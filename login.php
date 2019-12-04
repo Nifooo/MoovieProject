@@ -41,7 +41,7 @@ if (!empty($_POST['submitted'])) {
 }
 include('inc/header.php');
 ?>
-    <h1>Login</h1>
+    <h1>Connexion</h1>
     <form class="inscri" action="login.php" method="post">
         <label from="login">Pseudo ou email *</label>
         <input type="text" name="login" id="login" value="<?php if (!empty($_POST['login'])) {
