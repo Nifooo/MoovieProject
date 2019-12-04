@@ -43,7 +43,7 @@ function emailValidation($err, $mail, $key)
 
 function isLogged()
 {
-    $roles = array('abonne', 'admin');
+    $roles = array('users', 'admin');
     if (!empty ($_SESSION['login'])) {
         if (!empty($_SESSION['login']['id']) && filter_var($_SESSION['login']['id'], FILTER_VALIDATE_INT)) {
             if (!empty($_SESSION['login']['pseudo']) && is_string($_SESSION['login']['pseudo'])) {
