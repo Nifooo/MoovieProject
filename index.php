@@ -17,7 +17,7 @@ $page = 1;
 $offset = 0;
 
 //écrasée par celui de l'URL si get['page'] n'est pas vide
-if (!empty($_GET['page'])){
+if (!empty($_GET['page'])) {
     $page = $_GET['page'];
     $offset = $page * $num - $num;
 }
@@ -36,103 +36,123 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $count = $stmt->fetchColumn();
 
-include ('inc/header.php');
+//chekbox
+if (!empty($_POST['submitted'])) {
+    $_POST['cat'];
+    //print_r($_POST['cat']);
+    $cats = $_POST['cat'];
+
+        $filter = '%'. $_POST['cat'] .'%';
+
+        $sql = "SELECT * FROM movies_full WHERE 1 = 1";
+        foreach ($cats as $cat){
+        $sql .= " AND genres LIKES $filter";
+        }
+
+
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $movia = $query->fetch();
+
+
+}
+
+include('inc/header.php');
 
 ?>
 
-    <img width="100%" src="asset/img/joker.png" alt="Affiche de film du joker">
+    <a href="index.php"><img width="100%" src="asset/img/joker.png" alt="Affiche de film du joker"></a>
     <h1>Moovie Project</h1>
     <p class="sous-titre">Liste de 100 films du classement</p>
 
     <section id="check">
         <div class="wrap">
-            <form>
+            <form method="post" action="">
 
-                <input type="checkbox" class="drama" name="drama">
+                <input type="checkbox" class="drama" name="cat[]" value="Drama">
                 <label for="drama">Drama</label>
 
-                <input type="checkbox" class="western" name="western">
+                <input type="checkbox" class="western" name="cat[]" value="Western">
                 <label for="western">Western</label>
 
-                <input type="checkbox" class="crime" name="crime">
+                <input type="checkbox" class="crime" name="cat[]" value="Crime">
                 <label for="crime">Crime</label>
 
-                <input type="checkbox" class="comedy" name="comedy">
+                <input type="checkbox" class="comedy" name="cat[]" value="Comedy">
                 <label for="comedy">Comedy</label>
 
-                <input type="checkbox" class="action" name="action">
+                <input type="checkbox" class="action" name="cat[]" value="Action">
                 <label for="action">Action</label>
 
-                <input type="checkbox" class="aventure" name="aventure">
+                <input type="checkbox" class="aventure" name="cat[]" value="Aventure">
                 <label for="aventure">Aventure</label>
 
-                <input type="checkbox" class="thriller" name="thriller">
+                <input type="checkbox" class="thriller" name="cat[]" value="Thriller">
                 <label for="thriller">Thriller</label>
 
-                <input type="checkbox" class="romance" name="romance">
+                <input type="checkbox" class="romance" name="cat[]" value="Romance">
                 <label for="romance">Romance</label>
 
-                <input type="checkbox" class="war" name="war">
+                <input type="checkbox" class="war" name="cat[]" value="War">
                 <label for="war">War</label>
 
-                <input type="checkbox" class="horror" name="horror">
+                <input type="checkbox" class="horror" name="cat[]" value="Horror">
                 <label for="horror">Horror</label>
 
-                <input type="checkbox" class="mystery" name="mystery">
+                <input type="checkbox" class="mystery" name="cat[]" value="Mystery">
                 <label for="mystery">Mystery</label>
 
-                <input type="checkbox" class="film-noir" name="film-noir">
+                <input type="checkbox" class="film-noir" name="cat[]" value="film-noir">
                 <label for="film-noir">Film-noir</label>
 
-                <input type="checkbox" class="short" name="short">
+                <input type="checkbox" class="short" name="cat[]" value="Short">
                 <label for="short">Short</label>
 
-                <input type="checkbox" class="music" name="music">
+                <input type="checkbox" class="music" name="cat[]" value="Music">
                 <label for="music">Music</label>
 
-                <input type="checkbox" class="sci-fi" name="sci-fi">
+                <input type="checkbox" class="sci-fi" name="cat[]" value="Sci-fi">
                 <label for="sci-fi">Sci-Fi</label>
 
-                <input type="checkbox" class="musical" name="musical">
+                <input type="checkbox" class="musical" name="cat[]" value="Musical">
                 <label for="musical">Musical</label>
 
-                <input type="checkbox" class="family" name="family">
+                <input type="checkbox" class="family" name="cat[]" value="Family">
                 <label for="family">Family</label>
 
-                <input type="checkbox" class="animation" name="animation">
+                <input type="checkbox" class="animation" name="cat[]" value="Animation">
                 <label for="animation">Animation</label>
 
-                <input type="checkbox" class="adventure" name="adventure">
+                <input type="checkbox" class="adventure" name="cat[]" value="Adventure">
                 <label for="adventure">Adventure</label>
 
+                <input type="submit" name="submitted" value="Filtrer">
             </form>
         </div>
     </section>
 <?php
-paginationIdea($page,$num,$count);
+paginationIdea($page, $num, $count);
 foreach ($movies as $movie) {
-    ;
-    ; ?>
-<section id="listefilm">
-    <div class="wrap">
-         <div class="centrage">
-            <div class="organisation">
+    ;; ?>
+    <section id="listefilm">
+        <div class="wrap">
+            <div class="centrage">
+                <div class="organisation">
 
 
+                    <a href="details.php?id=<?php echo $movie['id']; ?>"><img
+                                src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>"></a>
 
-                <a href="details.php?id=<?php echo $movie['id'];?>"><img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>"></a>
+                    <h3>Titre : <?= $movie['title']; ?></h3>
 
-                <h3>Titre : <?= $movie['title']; ?></h3>
-
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
 
 <?php }
-paginationIdea($page,$num,$count);?>
+paginationIdea($page, $num, $count); ?>
 
 
     <div class="clear"></div>
