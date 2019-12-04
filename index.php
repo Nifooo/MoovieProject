@@ -47,7 +47,7 @@ foreach ($movies as $movie) {
 
     <h1>Titre : <?= $movie['title']; ?></h1>
 
-    <img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>">
+    <a href="details.php?id=<?php echo $movie['id'];?>"><img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>"></a>
 
 
 <?php }
