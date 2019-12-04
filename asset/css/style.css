@@ -71,6 +71,21 @@ h1 {
 #listefilm .organisation {
     float: left;
     width: 25%;
+    margin-bottom: 80px;
+}
+
+#listefilm .organisation h2 {
+    margin-top: 15px;
+    margin-left: 18%;
+}
+
+footer {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    color: white;
+    background-color: black;
+    padding: 20px 0;
 }
 
 
