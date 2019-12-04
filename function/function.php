@@ -91,3 +91,18 @@ function generateRandomString($length = 10)
     }
     return $randomString;
 }
+
+function paginationIdea($page,$num,$count) {
+    echo '<div class="pagination">';
+    if ($page > 1){
+        echo '<a href="index.php?page=' . ($page - 1) . '" class="btn btn-primary">Précédent</a>';
+    }
+
+    //n'affiche le lien vers la page suivante que s'il y en a un
+    //basée sur le count() de MYSQL
+    if ($page*$num < $count) {
+        echo '<a href="index.php?page=' . ($page + 1) . '" class="btn btn-primary">Suivant</a>';
+    }
+
+    echo '</div>';
+}
