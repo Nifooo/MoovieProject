@@ -24,7 +24,7 @@
                 <li><a href="">Mon compte</a></li>
                 <li><a href="">Mes favoris</a></li>
 
-                <li>Bonjour <?php echo $_SESSION['login']['pseudo'] ?> !</li>
+                <li class="bienvenue">Bonjour <?php echo $_SESSION['login']['pseudo'] ?> !</li>
             <?php } ?>
         </ul>
     </nav>
