@@ -67,10 +67,6 @@ h1 {
     line-height: 30px;
 }
 
-.centrage {
-    margin-left: 3%;
-}
-
 #listefilm .organisation {
     float: left;
     width: 23%;
@@ -78,9 +74,13 @@ h1 {
     margin-bottom: 80px;
 }
 
-#listefilm .organisation h2 {
+#listefilm .organisation h3 {
     margin-top: 15px;
-    margin-left: 18%;
+    text-align: center;
+}
+
+.organisation img {
+    width: 100%;
 }
 
 footer {
@@ -90,6 +90,36 @@ footer {
     color: white;
     background-color: black;
     padding: 20px 0;
+}
+
+
+/*////////////////////////////
+PAGE DE REGISTER
+////////////////////////////*/
+
+.inscri {
+    margin-left: 39.5%;
+}
+
+.inscri label {
+    font-size: 1.2em;
+    display: block;
+    padding-bottom: 20px;
+    padding-top: 15px;
+    text-transform: uppercase;
+}
+
+.inscri input[type=text], .inscri input[type=email], .inscri input[type=password] {
+    width: 300px;
+    height: 30px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.inscri input[type=submit] {
+    display: block;
+    margin-left: 12.2%;
+    margin-top: 50px;
 }
 
 

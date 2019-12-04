@@ -14,10 +14,10 @@
     <img src="asset/img/thelogo.png" alt="Logo du site MoovieProject : Faite partie du cinéma">
     <nav>
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php">Accueil</a></li>
             <?php if (!isLogged()) { ?>
                 <li><a href="register.php">Inscriptions</a></li>
-                <li><a href="login.php">Login</a></li>
+                <li><a href="login.php">Connexion</a></li>
 
             <?php } else { ?>
                 <li><a href="logout.php">Logout</a></li>

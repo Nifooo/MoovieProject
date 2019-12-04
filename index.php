@@ -113,26 +113,29 @@ paginationIdea($page,$num,$count);
 foreach ($movies as $movie) {
     ;
     ; ?>
-    <section id="listefilm">
+<section id="listefilm">
     <div class="wrap">
+         <div class="centrage">
+            <div class="organisation">
 
-    <div class="centrage">
-        <div class="organisation">
-    <h1>Titre : <?= $movie['title']; ?></h1>
 
-    <a href="details.php?id=<?php echo $movie['id'];?>"><img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>"></a>
+
+                <a href="details.php?id=<?php echo $movie['id'];?>"><img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>"></a>
+
+                <h3>Titre : <?= $movie['title']; ?></h3>
+
+            </div>
         </div>
     </div>
+</section>
 
-    </div>
-        <div class="clear"></div>
-    </section>
+
 
 <?php }
 paginationIdea($page,$num,$count);?>
 
 
-
+    <div class="clear"></div>
 
 <?php
 include('inc/footer.php');
