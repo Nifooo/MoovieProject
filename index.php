@@ -42,7 +42,7 @@ if (!empty($_POST['submitted'])) {
     //print_r($_POST['cat']);
     $cats = $_POST['cat'];
 
-        $filter = '%'. $_POST['cat'] .'%';
+        $filter = '%'. $cats .'%';
 
         $sql = "SELECT * FROM movies_full WHERE 1 = 1";
         foreach ($cats as $cat){
