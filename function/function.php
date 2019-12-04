@@ -63,7 +63,7 @@ function isLogged()
 function idAdmin()
 {
     if (isLogged()) {
-        if (!empty($_SESSION['role'] == 'admin')) {
+        if (!empty($_SESSION['login']['role'] == 'admin')) {
             return true;
         }
     }
@@ -106,3 +106,32 @@ function paginationIdea($page,$num,$count) {
 
     echo '</div>';
 }
+function paginationIdeaManageFilm($page,$num,$count) {
+    echo '<div class="pagination">';
+    if ($page > 1){
+        echo '<a href="manageFilm.php?page=' . ($page - 1) . '" class="btn btn-primary">Précédent</a>';
+    }
+
+    //n'affiche le lien vers la page suivante que s'il y en a un
+    //basée sur le count() de MYSQL
+    if ($page*$num < $count) {
+        echo '<a href="manageFilm.php?page=' . ($page + 1) . '" class="btn btn-primary">Suivant</a>';
+    }
+
+    echo '</div>';
+}
+function paginationIdeaSeefilm($page,$num,$count) {
+    echo '<div class="pagination">';
+    if ($page > 1){
+        echo '<a href="seeFilmAdmin.php?page=' . ($page - 1) . '" class="btn btn-primary">Précédent</a>';
+    }
+
+    //n'affiche le lien vers la page suivante que s'il y en a un
+    //basée sur le count() de MYSQL
+    if ($page*$num < $count) {
+        echo '<a href="seeFilmAdmin.php?page=' . ($page + 1) . '" class="btn btn-primary">Suivant</a>';
+    }
+
+    echo '</div>';
+}
+
