@@ -7,21 +7,13 @@ $errors = array();
 $succes = false;
 
 //Select=colonne; FROM= table; WHERE -> col1 = valeur; AND col2 = valeur2; ORDER BY = col ASC/DESC ; LIMIT = combien;
-//nombre de film par page
+//nombre de film 100
 $num = 100;
 
-//numéro de page
-$page = 1;
 
 //offset par défaut
 $offset = 0;
-
-//écrasée par celui de l'URL si get['page'] n'est pas vide
-if (!empty($_GET['page'])) {
-    $page = $_GET['page'];
-    $offset = $page * $num - $num;
-}
-//inclus les paramètres d'offset pour la pagination
+//affichage film random
 $sql = "SELECT * FROM movies_full
 ORDER BY RAND()
  LIMIT $num 
@@ -30,11 +22,7 @@ $query = $pdo->prepare($sql);
 $query->execute();
 $movies = $query->fetchAll();
 
-//requête pour compter le nombre de lignes dans la table
-$sql = "SELECT COUNT(*) FROM movies_full";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$count = $stmt->fetchColumn();
+
 
 //chekbox
 if (!empty($_POST['submitted'])) {
@@ -59,6 +47,7 @@ if (!empty($_POST['submitted'])) {
 
 include('inc/header.php');
 
+//debug($_SESSION);
 ?>
 
     <a href="index.php"><img width="100%" src="asset/img/joker.png" alt="Affiche de film du joker"></a>
@@ -131,8 +120,9 @@ include('inc/header.php');
         </div>
     </section>
 <?php
-paginationIdea($page, $num, $count);
+
 foreach ($movies as $movie) {
+
     ;; ?>
     <section id="listefilm">
         <div class="wrap">
@@ -141,7 +131,12 @@ foreach ($movies as $movie) {
 
 
                     <a href="details.php?id=<?php echo $movie['id']; ?>"><img
-                                src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>"></a>
+                                src="<?php
+                                $img = 'posters/' . $movie['id'] . '.jpg';
+                                if (file_exists($img)){
+                                echo $img;}else{
+                                    echo 'asset/img/dvd-logo.jpg';
+                                } ?>" alt="<?= $movie['title']; ?>"></a>
 
                     <h3>Titre : <?= $movie['title']; ?></h3>
 
@@ -152,7 +147,7 @@ foreach ($movies as $movie) {
 
 
 <?php }
-paginationIdea($page, $num, $count); ?>
+ ?>
 
 
     <div class="clear"></div>
