@@ -7,11 +7,11 @@
         } else {
             echo '';
         } ?></title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="asset/css/style.css">
 </head>
 <body>
 <header>
-
+    <img src="asset/img/thelogo.png" alt="Logo du site MoovieProject : Faite partie du cinéma">
     <nav>
         <ul>
             <li><a href="index.php">Home</a></li>
@@ -28,6 +28,5 @@
             <?php } ?>
         </ul>
     </nav>
-
+    <div class="clear"></div>
 </header>
-<div id="content">
