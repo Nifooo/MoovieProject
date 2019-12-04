@@ -117,9 +117,11 @@ foreach ($movies as $movie) {
     <div class="wrap">
 
     <div class="centrage">
+        <div class="organisation">
     <h1>Titre : <?= $movie['title']; ?></h1>
 
     <a href="details.php?id=<?php echo $movie['id'];?>"><img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>"></a>
+        </div>
     </div>
 
     </div>
