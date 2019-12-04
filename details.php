@@ -5,7 +5,6 @@ include('function/function.php');
 
 
 if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
-    echo $_GET['id'];
     $id = $_GET['id'];
 
 
@@ -31,7 +30,8 @@ $title =$movie['title'] . '-' . $movie['created'];
 include('inc/header.php'); ?>
 
     <div class="films">
-        <h1><?php echo $movie['title']; ?></h1>
+        <h2><?php echo $movie['title']; ?></h2>
+        <img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>">
         <p>Année:<?php echo $movie['year'] ?></p>
         <p>Genres:<?php echo $movie['genres'] ?></p>
         <p>Intrigue:<?php echo $movie['plot'] ?></p>
@@ -41,7 +41,6 @@ include('inc/header.php'); ?>
         <p>Vues:<?php echo $movie['runtime'] ?></p>
         <p>Note:<?php echo $movie['rating'] ?></p>
         <p>Popularité:<?php echo $movie['popularity'] ?></p>
-        <img src="posters/<?php echo $movie['id'] ?>.jpg" alt="<?= $movie['title']; ?>">
 
     </div>
 
