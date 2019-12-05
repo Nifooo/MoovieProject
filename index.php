@@ -57,60 +57,79 @@ include('inc/header.php');
 
                 <input type="checkbox" class="drama" name="cat[]" value="Drama">
                 <label for="drama">Drama</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="western" name="cat[]" value="Western">
                 <label for="western">Western</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="crime" name="cat[]" value="Crime">
                 <label for="crime">Crime</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="comedy" name="cat[]" value="Comedy">
                 <label for="comedy">Comedy</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="action" name="cat[]" value="Action">
                 <label for="action">Action</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="aventure" name="cat[]" value="Aventure">
                 <label for="aventure">Aventure</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="thriller" name="cat[]" value="Thriller">
                 <label for="thriller">Thriller</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="romance" name="cat[]" value="Romance">
                 <label for="romance">Romance</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="war" name="cat[]" value="War">
                 <label for="war">War</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="horror" name="cat[]" value="Horror">
                 <label for="horror">Horror</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="mystery" name="cat[]" value="Mystery">
                 <label for="mystery">Mystery</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="film-noir" name="cat[]" value="film-noir">
                 <label for="film-noir">Film-noir</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="short" name="cat[]" value="Short">
                 <label for="short">Short</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="music" name="cat[]" value="Music">
                 <label for="music">Music</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="sci-fi" name="cat[]" value="Sci-fi">
                 <label for="sci-fi">Sci-Fi</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="musical" name="cat[]" value="Musical">
                 <label for="musical">Musical</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="family" name="cat[]" value="Family">
                 <label for="family">Family</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="animation" name="cat[]" value="Animation">
                 <label for="animation">Animation</label>
+                <div class="clear"></div>
 
                 <input type="checkbox" class="adventure" name="cat[]" value="Adventure">
                 <label for="adventure">Adventure</label>
+                <div class="clear"></div>
 
                 <input type="submit" name="submitted" value="Filtrer">
             </form>
@@ -119,26 +138,21 @@ include('inc/header.php');
 foreach ($movies as $movie) {
 
     ;; ?>
-    <section id="listefilm">
+    <div id="listefilm">
         <div class="wrap">
-            <div class="centrage">
-                <div class="organisation">
 
+            <a href="details.php?id=<?php echo $movie['id']; ?>"><img class="affichefilm"
+                        src="<?php
+                        $img = 'posters/' . $movie['id'] . '.jpg';
+                        if (file_exists($img)){
+                        echo $img;}else{
+                            echo 'asset/img/dvd-logo.jpg';
+                        } ?>" alt="<?= $movie['title']; ?>"></a>
 
-                    <a href="details.php?id=<?php echo $movie['id']; ?>"><img
-                                src="<?php
-                                $img = 'posters/' . $movie['id'] . '.jpg';
-                                if (file_exists($img)){
-                                echo $img;}else{
-                                    echo 'asset/img/dvd-logo.jpg';
-                                } ?>" alt="<?= $movie['title']; ?>"></a>
+            <h3>Titre : <?= $movie['title']; ?></h3>
 
-                    <h3>Titre : <?= $movie['title']; ?></h3>
-
-                </div>
-            </div>
         </div>
-    </section>
+    </div>
 
 
 <?php }
