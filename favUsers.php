@@ -10,15 +10,15 @@ if (isLogged()) {
 
     //jointure
 
-    /*$idusers = $_SESSION['login']['id'];
-    $sql = "SELECT id, id
+    $idusers = $_SESSION['login']['id'];
+    $sql = "SELECT id
         FROM movie_user
         JOIN users ON users.id = user_id.id
         JOIN movies_full ON movies_full.id = movie_id.id
         WHERE users.id = $idusers";
     $query = $pdo->prepare($sql);
     $query->execute();
-    $un = $query->fetchAll();*/
+    $un = $query->fetchAll();
 
     $sql ="SELECT *
     FROM movie_user

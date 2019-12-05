@@ -63,7 +63,7 @@ function isLogged()
 function idAdmin()
 {
     if (isLogged()) {
-        if (!empty($_SESSION['login']['role'] == 'admin')) {
+        if (!empty($_SESSION['login']['role'] === 'admin')) {
             return true;
         }
     }

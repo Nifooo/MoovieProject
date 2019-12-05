@@ -24,13 +24,13 @@ if (!empty($_POST['submitted'])){
 
 
     }else{
-        $errors['email'] = 'Prend moi pour un con !';
+        $errors['email'] = 'Prend moi pour une bite !';
     }
 }
 include('inc/header.php');
 ?>
     <h1>Mot de passe oublié</h1>
-    <form method="post" action="">
+    <form method="post" action="forgetpsw.php">
         <label for="email">Email *</label>
         <input type="email" name="email" id="email" value="<?php if (!empty($_POST['email'])){echo $_POST['email'];}?>">
         <p class="error"><?php if (!empty($errors['email'])) {

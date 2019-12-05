@@ -20,6 +20,8 @@
                 <li><a href="register.php">Inscriptions</a></li>
                 <li><a href="login.php">Connexion</a></li>
 
+
+
             <?php }elseif(idAdmin()){?>
                 <li><a href="logout.php">Deconnexion</a></li>
                 <li><a href="admin.php">Pannel admin</a></li>
