@@ -5,7 +5,17 @@ require('function/function.php');
 $title = 'Home Page';
 $errors = array();
 $succes = false;
-//debug($_SESSION);
+debug($_SESSION);
+$idusers = 2;
+$sql = "SELECT * FROM movie_user AS mu
+      LEFT JOIN movies_full AS mf ON mf.id = mu.movie_id
+      WHERE mu.user_id = $idusers";
+$query = $pdo->prepare($sql);
+$query->execute();
+$un = $query->fetchAll();
+
+debug($un);
+die();
 if (isLogged()) {
 
     //jointure
@@ -16,6 +26,7 @@ if (isLogged()) {
         JOIN users ON users.id = user_id.id
         JOIN movies_full ON movies_full.id = movie_id.id
         WHERE users.id = $idusers";
+
     $query = $pdo->prepare($sql);
     $query->execute();
     $un = $query->fetchAll();
@@ -65,4 +76,3 @@ if (isLogged()) {
     }
 }
 //debug($vaccins);
-
