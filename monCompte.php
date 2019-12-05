@@ -57,7 +57,7 @@ if (!empty($_GET['token']) && $_GET['email']) {
 include('inc/header.php');
 ?>
     <h1>Modifier mot de passe</h1>
-    <form action="" method="post">
+    <form class="inscri" action="" method="post">
         <label for="password1">Mot de passe *</label>
         <input type="password" id="password1" name="password1" value="">
         <p class="error"><?php if (!empty($errors['password'])) {
