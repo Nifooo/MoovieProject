@@ -65,4 +65,3 @@ if (isLogged()) {
     }
 }
 //debug($vaccins);
-
