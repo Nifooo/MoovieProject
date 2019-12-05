@@ -52,7 +52,6 @@ include('inc/header.php');
 
     <a href="index.php"><img width="100%" src="asset/img/joker.png" alt="Affiche de film du joker"></a>
     <h1>Moovie Project</h1>
-    <p class="sous-titre">Liste de 100 films du classement</p>
 
     <section id="check">
         <div class="wrap">
