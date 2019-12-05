@@ -6,9 +6,8 @@ $title = 'Home Page';
 $errors = array();
 $succes = false;
 
-if (isLogged()){
+if ( isLogged()){
 if (!empty($_GET['token']) && $_GET['email']) {
-
     $token = clean($_GET['token']);
     $email = clean($_GET['email']);
     $email = urldecode($_GET['email']);
@@ -68,7 +67,7 @@ include('inc/header.php');
         <label for="password2">Confirmation mdp *</label>
         <input type="password" id="password2" name="password2" value="">
 
-        <input type="submit" name="submitted" value="Inscrivez-vous">
+        <input type="submit" name="submitted" value="Envoyer">
     </form>
 
 <?php
