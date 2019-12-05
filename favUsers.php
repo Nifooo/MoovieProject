@@ -75,4 +75,4 @@ if (isLogged()) {
     }
     }
 }
-//debug($vaccins);
+
