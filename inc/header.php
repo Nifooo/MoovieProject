@@ -12,10 +12,9 @@
 </head>
 <body>
 <header>
-    <img src="asset/img/thelogo.png" alt="Logo du site MoovieProject : Faite partie du cinéma">
+    <a href="index.php"><img src="asset/img/thelogo.png" alt="Logo du site MoovieProject : Faite partie du cinéma"></a>
     <nav>
         <ul>
-            <li><a href="index.php">Accueil</a></li>
             <?php if (!isLogged()) { ?>
                 <li><a href="register.php">Inscriptions</a></li>
                 <li><a href="login.php">Connexion</a></li>
@@ -25,13 +24,13 @@
             <?php }elseif(idAdmin()){?>
                 <li><a href="logout.php">Deconnexion</a></li>
                 <li><a href="admin.php">Pannel admin</a></li>
-                <li><a href="monCompte.php">Mon compte</a></li>
+                <li><a href="aVoir.php">Films à voir</a></li>
                 <li><a href="favUsers.php">Mes favoris</a></li>
            <?php }  else { ?>
                 <div class="head2">
             <li><a href="logout.php">Deconnexion</a></li>
-            <li><a href="monCompte.php">Mon compte</a></li>
-            <li><a href="favUsers.php">Mes favoris</a></li>
+            <li><a href="aVoir.php">Films à voir</a></li>
+            <li><a href="favUsers.php">Films favoris</a></li>
                 </div>
 
             <li class="bienvenue">Bonjour <?php echo $_SESSION['login']['pseudo'] ?> !</li>

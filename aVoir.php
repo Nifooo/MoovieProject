@@ -55,20 +55,9 @@ if (!empty($_GET['token']) && $_GET['email']) {
 }
 include('inc/header.php');
 ?>
-    <h1>Modifier mot de passe</h1>
-    <form class="inscri" action="" method="post">
-        <label for="password1">Mot de passe *</label>
-        <input type="password" id="password1" name="password1" value="">
-        <p class="error"><?php if (!empty($errors['password'])) {
-                echo $errors['password'];
-            } ?></p>
+    <h1>Films à voir</h1>
 
 
-        <label for="password2">Confirmation mdp *</label>
-        <input type="password" id="password2" name="password2" value="">
-
-        <input type="submit" name="submitted" value="Envoyer">
-    </form>
 
 <?php
 }else{
