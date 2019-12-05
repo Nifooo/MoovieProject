@@ -26,9 +26,11 @@
                 <li><a href="monCompte.php">Mon compte</a></li>
                 <li><a href="favUsers.php">Mes favoris</a></li>
            <?php }  else { ?>
+                <div class="head2">
             <li><a href="logout.php">Deconnexion</a></li>
             <li><a href="monCompte.php">Mon compte</a></li>
             <li><a href="favUsers.php">Mes favoris</a></li>
+                </div>
 
             <li class="bienvenue">Bonjour <?php echo $_SESSION['login']['pseudo'] ?> !</li>
             <?php }?>

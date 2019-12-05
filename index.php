@@ -53,9 +53,7 @@ include('inc/header.php');
     <a href="index.php"><img width="100%" src="asset/img/joker.png" alt="Affiche de film du joker"></a>
     <h1>Moovie Project</h1>
 
-    <section id="check">
-        <div class="wrap">
-            <form method="post" action="">
+            <form class="vertical" method="post" action="">
 
                 <input type="checkbox" class="drama" name="cat[]" value="Drama">
                 <label for="drama">Drama</label>
@@ -116,8 +114,6 @@ include('inc/header.php');
 
                 <input type="submit" name="submitted" value="Filtrer">
             </form>
-        </div>
-    </section>
 <?php
 
 foreach ($movies as $movie) {
