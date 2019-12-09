@@ -2,6 +2,7 @@
 session_start();
 require('inc/pdo.php');
 require('function/function.php');
+use JasonGrimes\Paginator;
 $title = 'Film a voir';
 $errors = array();
 $succes = false;

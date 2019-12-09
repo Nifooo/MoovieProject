@@ -3,6 +3,8 @@ session_start();
 require('inc/pdo.php');
 require('function/function.php');
 require('vendor/autoload.php');
+use JasonGrimes\Paginator;
+
 $title = 'Home Page';
 $errors = array();
 $succes = false;
