@@ -26,7 +26,7 @@ if (!empty($_GET['id']) && is_numeric($_GET['id'])) {
 
 
 
-$title =$movie['title'] . '-' . $movie['created'];
+$title =$movie['title'] . '-' . $movie['year'];
 include('inc/header.php'); ?>
 
     <div class="films">
