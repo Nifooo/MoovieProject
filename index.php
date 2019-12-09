@@ -2,6 +2,7 @@
 session_start();
 require('inc/pdo.php');
 require('function/function.php');
+require('vendor/autoload.php');
 $title = 'Home Page';
 $errors = array();
 $succes = false;
@@ -43,21 +44,31 @@ $movies = $query->fetchAll();
 //        $checkU = $query->fetch();
 //
 //}
-debug($_POST);
-$sql="SELECT genres FROM movies_full WHERE 1=1";
-$query = $pdo->prepare($sql);
-        $query->execute();
-        $checkU = $query->fetch();
-if (!empty($_POST['genres'])){
+//debug($_POST);
 
-    $sql .=' AND ( genres LIKE "%' . $_GET['genres'][0] . '%"';
-    for ($i = 1;$i<count($_POST['genres']);$i++) {
-        $sql .= ' OR genres LIKE "%' . $_GET['genres'][$i] . '%"';
+
+       // $checkU = $query->fetch();
+if (!empty($_POST['submitted'])) {
+//debug($_POST);
+    $sql = "SELECT genres FROM movies_full WHERE 1=1";
+    $sql .= ' AND ( genres LIKE "%' . $_POST['cat'][0] . '%"';
+    for ($i = 1; $i < count($_POST['cat']); $i++) {
+        $sql .= ' OR genres LIKE "%' . $_POST['cat'][$i] . '%"';
     }
-$sql .= ')';
+        $sql .= ')';
 
-}
 
+$sql .= " ORDER BY genres ASC";
+
+//debug($sql);
+//die();
+
+    debug($sql);
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $movies = $query->fetchAll();
+    //debug($_SESSION);
+    }
 
 
 

@@ -16,8 +16,8 @@ $query = $pdo->prepare($sql);
 $query->execute();
 $un = $query->fetchAll();
 
-debug($un);
-die();
+//debug($un);
+//die();
 if (isLogged()) {
 
 

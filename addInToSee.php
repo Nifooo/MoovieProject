@@ -23,7 +23,7 @@ if (isLogged()) {
 //UPDATE
             $success = true;
             $sql = "INSERT INTO movie_user
-               VALUE (null,:user_id,:movie_id,null,NOW(),null)
+               VALUE ('',:user_id,:movie_id,null,NOW(),'')
               ";
             $query = $pdo->prepare($sql);
             $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
