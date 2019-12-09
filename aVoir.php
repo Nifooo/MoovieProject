@@ -79,6 +79,8 @@ foreach ($movie as $movia) { ?>
             </form>
         </div>
     </div>
-<?php }
 
-include('inc/footer.php');
+
+<?php } ?>
+<div class="clear"></div>
+<?php include('inc/footer.php');
