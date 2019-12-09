@@ -41,9 +41,16 @@ include('inc/header.php'); ?>
         <p>Vues : <?php echo $movie['runtime'] ?></p>
         <p>Note : <?php echo $movie['rating'] ?></p>
         <p>Popularité : <?php echo $movie['popularity'] ?></p>
-        <a class="favorite" href="addInMyFav.php?id=<?= $movie['id']?>">Ajouter à mes films favoris</a>
-        <a class="toosee" href="addInToSee.php?id=<?= $movie['id']?>">Ajouter à mes films à voir</a>
-
+        <?php if ( isLogged()){ ?>
+        <a class="toosee" href="addInToSee.php?id=<?= $movie['id']?>">Ajouter à mes films à voir</a> <?php } ?>
+        <div class="rating"><!--
+   --><a href="#5" title="Donner 5 étoiles">☆</a><!--
+   --><a href="#4" title="Donner 4 étoiles">☆</a><!--
+   --><a href="#3" title="Donner 3 étoiles">☆</a><!--
+   --><a href="#2" title="Donner 2 étoiles">☆</a><!--
+   --><a href="#1" title="Donner 1 étoile">☆</a>
+        </div>
+    <div class="clear"></div>
     </div>
 
 

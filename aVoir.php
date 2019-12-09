@@ -2,13 +2,13 @@
 session_start();
 require('inc/pdo.php');
 require('function/function.php');
-$title = 'Home Page';
+$title = 'Films à voir';
 $errors = array();
 $succes = false;
 
-if ( isLogged()){
+/*if ( isLogged()){
 if (!empty($_GET['token']) && $_GET['email']) {
-    $token = clean($_GET['token']);
+ $token = clean($_GET['token']);
     $email = clean($_GET['email']);
     $email = urldecode($_GET['email']);
     $sql = "SELECT email,token FROM users WHERE email = :email AND token = :token";
@@ -52,7 +52,7 @@ if (!empty($_GET['token']) && $_GET['email']) {
 
 
     }
-}
+}*/
 include('inc/header.php');
 ?>
     <h1>Films à voir</h1>
@@ -60,8 +60,8 @@ include('inc/header.php');
 
 
 <?php
-}else{
+/*}else{
     echo 'Erreur 403, vous n&apos;avez pas accès a cette fonctionnalité';
-}
+}*/
 include('inc/footer.php');
 
