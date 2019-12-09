@@ -16,9 +16,25 @@ if (isLogged()) {
     $query = $pdo->prepare($sql);
     $query->execute();
     $movie = $query->fetchAll();
-    debug($movie);
+    //debug($movie);
 //requete film a voir
+if(!empty($_POST['submitted'])){
 
+ $idmovie = $_POST['jj'];
+ $userid = $_SESSION['login']['id'];
+    // jj  movie du film
+    // $user_id
+
+    //  request
+    $note = clean($_POST['star']);
+    $sql = "UPDATE movie_user
+    SET note = :note
+    WHERE $idmovie AND $userid";
+    $query->bindValue(':note', $note, PDO::PARAM_STR);
+    $query = $pdo->prepare($sql);
+    $query->execute();
+
+}
 
 } else {
     echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
@@ -30,7 +46,7 @@ foreach ($movie as $movia) { ?>
     <div id="listefilm">
         <div class="wrap">
 
-            <a href="details.php?id=<?php echo $movia['id']; ?>"><img class="affichefilm"
+            <a href="details.php?slug=<?php echo $movie['slug']; ?>"><img class="affichefilm"
 
               src="<?php $img = 'posters/' . $movia['id'] . '.jpg';
 
@@ -42,14 +58,17 @@ foreach ($movie as $movia) { ?>
 
             <h3>Titre : <?= $movia['title']; ?></h3>
 
-            <div class="rating"><!--
-   --><a href="#5" title="Donner 5 étoiles">☆</a><!--
-   --><a href="#4" title="Donner 4 étoiles">☆</a><!--
-   --><a href="#3" title="Donner 3 étoiles">☆</a><!--
-   --><a href="#2" title="Donner 2 étoiles">☆</a><!--
-   --><a href="#1" title="Donner 1 étoile">☆</a>
-            </div>
-
+           <form method="post" action="">
+               <select name="star">
+                   <option value="1">☆</option>
+                   <option value="2">☆☆</option>
+                   <option value="3">☆☆☆</option>
+                   <option value="4">☆☆☆☆</option>
+                   <option value="5">☆☆☆☆☆</option>
+               </select>
+               <input type="submit" name="submitted" value="Votez">
+               <input type="hidden" name="jj" value="<?=$movia['id']?>">
+           </form>
         </div>
     </div>
 <?php }

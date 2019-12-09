@@ -8,13 +8,31 @@ if (!empty($_GET['slug'])) {
     $slug = $_GET['slug'];
 
 
-
     $sql = "SELECT * FROM movies_full WHERE slug LIKE '" . $slug . "%'";
     $query = $pdo->prepare($sql);
     $query->execute();
     $movie = $query->fetch();
 
+
     if (!empty($movie)) {
+        $btn = true;
+
+        if (isLogged()) {
+            $iduser = $_SESSION['login']['id'];
+            $idmovie = $movie['id'];
+
+            $sql = "SELECT * FROM movie_user WHERE user_id = :iduser AND movie_id = :movieid";
+            $query = $pdo->prepare($sql);
+            $query->bindValue(':iduser', $iduser, PDO::PARAM_INT);
+            $query->bindValue(':movieid', $idmovie, PDO::PARAM_STR);
+            $query->execute();
+            $boutonfav = $query->fetch();
+
+            if (!empty($boutonfav)) {
+                $btn = false;
+            }
+        }
+
 
     } else {
         die('404');
@@ -41,7 +59,7 @@ include('inc/header.php'); ?>
         <p>Vues : <?php echo $movie['runtime'] ?></p>
         <p>Note : <?php echo $movie['rating'] ?></p>
         <p>Popularité : <?php echo $movie['popularity'] ?></p>
-        <?php if ( isLogged()){ ?>
+        <?php if ( isLogged() && $btn){ ?>
         <a class="toosee" href="addInToSee.php?id=<?= $movie['id']?>">Ajouter à mes films à voir</a> <?php } ?>
     <div class="clear"></div>
     </div>
