@@ -43,7 +43,11 @@ $movies = $query->fetchAll();
 //        $checkU = $query->fetch();
 //
 //}
-$checkU= $query -> fetch();
+debug($_POST);
+$sql="SELECT genres FROM movies_full WHERE 1=1";
+$query = $pdo->prepare($sql);
+        $query->execute();
+        $checkU = $query->fetch();
 if (!empty($_POST['genres'])){
 
     $sql .=' AND ( genres LIKE "%' . $_GET['genres'][0] . '%"';
@@ -51,7 +55,7 @@ if (!empty($_POST['genres'])){
         $sql .= ' OR genres LIKE "%' . $_GET['genres'][$i] . '%"';
     }
 $sql .= ')';
-    $sql = "SELECT movies_full WHERE genres LIKE '" . $checkU . "%'";
+
 }
 
 
