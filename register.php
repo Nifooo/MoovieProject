@@ -66,7 +66,7 @@ if (!empty($_POST['submitted'])) {
 
 
 
-        $sql = "INSERT INTO users VALUES(null,:email,'users',:password,NOW(),:token,:pseudo)";
+        $sql = "INSERT INTO users (id,email,role,password,created_at,token,pseudo) VALUES (null,:email,'users',:password,NOW(),:token,:pseudo)";
         $query = $pdo->prepare($sql);
         $query->bindValue(':email', $email, PDO::PARAM_STR);
         $query->bindValue(':password', $hashpsw, PDO::PARAM_STR);
