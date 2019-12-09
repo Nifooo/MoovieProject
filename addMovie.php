@@ -3,22 +3,22 @@ include('inc/pdo.php');
 include('function/function.php');
 $errors = array();
 $success = false;
-
+if (idAdmin()) {
 
 if (!empty($_POST['submit'])) {
-    $titre = clean($_POST['title']);
-    $annee = clean($_POST['years']);
-    $genre = clean($_POST['genres']);
-    $resume = clean($_POST['plot']);
-    $realisateur = clean($_POST['directors']);
-    $acteur = clean($_POST['cast']);
-    $scenariste = clean($_POST['writers']);
-    $vues = clean($_POST['runtime']);
+    $titre = clean($_POST['titre']);
+    $annee = clean($_POST['annee']);
+    $genre = clean($_POST['genre']);
+    $resume = clean($_POST['resume']);
+    $realisateur = clean($_POST['realisateur']);
+    $acteur = clean($_POST['acteur']);
+    $scenariste = clean($_POST['scenariste']);
+    $vues = clean($_POST['vues']);
     $mpaa = clean($_POST['mpaa']);
-    $popularite = clean($_POST['popularity']);
-    $poster = clean($_POST['poster_flag']);
-    $ratio = clean($_POST['rating']);
-    $slug = $title . '-' . $annee;
+    $popularite = clean($_POST['popularite']);
+    $poster = clean($_POST['poster']);
+    $ratio = clean($_POST['ratio']);
+    $slug = $titre . '-' . $annee;
 
     $errors = textWalid($errors, $titre, 'title',1, 255);
     $errors = textWalid($errors, $annee, 'years',1,11);
@@ -108,7 +108,7 @@ if($success) { ?>
 
     </form>
 </div>
-<div class="clear"></div> <?php } ?>
+<div class="clear"></div> <?php }
 
-
-<?php include('inc/footer.php');
+} else {echo '403';}
+include('inc/footer.php');
