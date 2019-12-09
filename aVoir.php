@@ -2,7 +2,6 @@
 session_start();
 require('inc/pdo.php');
 require('function/function.php');
-use JasonGrimes\Paginator;
 $title = 'Film a voir';
 $errors = array();
 $succes = false;
@@ -55,7 +54,7 @@ foreach ($movie as $movia) { ?>
     <div id="listefilm">
         <div class="wrap">
 
-            <a href="details.php?slug=<?php echo $movie['slug']; ?>"><img class="affichefilm"
+            <a href="details.php?id=<?php echo $movie['id']; ?>"><img class="affichefilm"
 
               src="<?php $img = 'posters/' . $movia['id'] . '.jpg';
 
