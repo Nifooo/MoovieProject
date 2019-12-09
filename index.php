@@ -60,12 +60,13 @@ if (!empty($_POST['submitted'])) {
         $sql .= ')';
 
 
-$sql .= " ORDER BY genres ASC";
-
+$sql .= " ORDER BY RAND()";
+$sql .= " LIMIT $num
+           OFFSET $offset";
 //debug($sql);
 //die();
 
-    debug($sql);
+    //debug($sql);
     $query = $pdo->prepare($sql);
     $query->execute();
     $movies = $query->fetchAll();
