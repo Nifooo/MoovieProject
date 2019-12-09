@@ -273,6 +273,36 @@ PAGE DE DETAILS
 
 
 
+
+/*////////////////////////////
+PAGE ADMIN
+////////////////////////////*/
+
+
+
+.adminajout {
+    text-align: center;
+    font-size: 2em;
+    text-transform: uppercase;
+    margin: 50px 0;
+}
+
+.adminform {
+    display: block;
+    margin: 40px 40%;
+}
+
+.adminform input[type=text], .adminform input[type=number] {
+    width: 260px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+
+
+
+
 @media screen and (max-width: 950px) {
     #listefilm .organisation {
         float: left;
