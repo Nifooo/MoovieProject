@@ -54,7 +54,7 @@ foreach ($movie as $movia) { ?>
     <div id="listefilm">
         <div class="wrap">
 
-            <a href="details.php?id=<?php echo $movie['id']; ?>"><img class="affichefilm"
+            <a href="details.php?slug=<?php echo $movia['slug']; ?>"><img class="affichefilm"
 
               src="<?php $img = 'posters/' . $movia['id'] . '.jpg';
 
