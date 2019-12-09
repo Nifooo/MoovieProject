@@ -25,25 +25,39 @@ $movies = $query->fetchAll();
 
 
 //chekbox
-if (!empty($_POST['submitted'])) {
-    $_POST['cat'];
-    //print_r($_POST['cat']);
-    $cats = $_POST['cat'];
+//if (!empty($_POST['submitted'])) {
+//    $_POST['cat'];
+////    print_r($_POST['cat']);
+//    $cats = $_POST['cat'];
+//
+//        $filter = '%'. $cats .'%';
+//
+//        $sql = "SELECT * FROM movies_full WHERE 1 = 1";
+//        foreach ($cats as $cat){
+//        $sql .= " AND genres LIKES $filter";
+//        }
+//
+//
+//        $query = $pdo->prepare($sql);
+//        $query->execute();
+//        $checkU = $query->fetch();
+//
+//}
+$checkU= $query -> fetch();
+if (!empty($_POST['genres'])){
 
-        $filter = '%'. $cats .'%';
-
-        $sql = "SELECT * FROM movies_full WHERE 1 = 1";
-        foreach ($cats as $cat){
-        $sql .= " AND genres LIKES $filter";
-        }
-
-
-        $query = $pdo->prepare($sql);
-        $query->execute();
-        $movia = $query->fetch();
-
-
+    $sql .=' AND ( genres LIKE "%' . $_GET['genres'][0] . '%"';
+    for ($i = 1;$i<count($_POST['genres']);$i++) {
+        $sql .= ' OR genres LIKE "%' . $_GET['genres'][$i] . '%"';
+    }
+$sql .= ')';
+    $sql = "SELECT movies_full WHERE genres LIKE '" . $checkU . "%'";
 }
+
+
+
+
+
 
 include('inc/header.php');
 
