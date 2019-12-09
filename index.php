@@ -2,6 +2,7 @@
 session_start();
 require('inc/pdo.php');
 require('function/function.php');
+require('vendor/autoload.php');
 $title = 'Home Page';
 $errors = array();
 $succes = false;
