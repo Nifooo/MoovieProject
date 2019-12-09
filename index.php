@@ -50,7 +50,7 @@ $movies = $query->fetchAll();
        // $checkU = $query->fetch();
 if (!empty($_POST['submitted'])) {
 //debug($_POST);
-    $sql = "SELECT genres FROM movies_full WHERE 1=1";
+    $sql = "SELECT * FROM movies_full WHERE 1=1";
     $sql .= ' AND ( genres LIKE "%' . $_POST['cat'][0] . '%"';
     for ($i = 1; $i < count($_POST['cat']); $i++) {
         $sql .= ' OR genres LIKE "%' . $_POST['cat'][$i] . '%"';
