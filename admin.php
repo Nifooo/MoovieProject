@@ -29,14 +29,14 @@ if (idAdmin()){?>
         <div class="sidebar-collapse">
             <ul class="nav" id="main-menu">
                 <li>
-                    <a href="index.php" ><i class="fa fa-qrcode "></i>Home</a>
+                    <a href="index.php" ><i class="fa fa-qrcode "></i>Accueil</a>
                 </li>
 
                 <li>
-                    <a href="#" ><i class="fa fa-qrcode "></i>Add film</a>
+                    <a href="addMovie.php" ><i class="fa fa-qrcode "></i>Ajouter un film</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i>Add Users</a>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i>Ajouter un utilisateur</a>
                 </li>
 
 

@@ -56,13 +56,13 @@ foreach ($movie as $movia) { ?>
 
             <a href="details.php?slug=<?php echo $movie['slug']; ?>"><img class="affichefilm"
 
-                                                                          src="<?php $img = 'posters/' . $movia['id'] . '.jpg';
+              src="<?php $img = 'posters/' . $movia['id'] . '.jpg';
 
-                                                                          if (file_exists($img)) {
-                                                                              echo $img;
-                                                                          } else {
-                                                                              echo 'asset/img/dvd-logo.jpg';
-                                                                          } ?>" alt="<?= $movia['title']; ?>"></a>
+              if (file_exists($img)) {
+                  echo $img;
+              } else {
+                  echo 'asset/img/dvd-logo.jpg';
+              } ?>" alt="<?= $movia['title']; ?>"></a>
 
             <h3>Titre : <?= $movia['title']; ?></h3>
 
