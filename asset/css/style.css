@@ -202,6 +202,11 @@ PAGE DE DETAILS
     margin: 80px 0;
 }
 
+.vertical input[type=submit]:hover {
+    background-color: white;
+    color: black;
+}
+
 .films img {
     display: block;
     margin-left: auto;
@@ -241,6 +246,27 @@ PAGE DE DETAILS
     background-color: black;
     color: white;
     border: 1.5px solid white;
+}
+
+.rating a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 3em;
+    transition: color .4s;
+}
+.rating a:hover,
+.rating a:focus {
+    color: orange;
+    cursor: pointer;
+}
+
+.rating a:hover ~ a,
+.rating a:focus ~ a {
+    color: orange;
+}
+
+.rating a {
+    float: right;
 }
 
 

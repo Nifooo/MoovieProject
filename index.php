@@ -117,7 +117,7 @@ include('inc/header.php');
                 <input type="checkbox" class="adventure" name="cat[]" value="Adventure">
                 <label for="adventure">Adventure</label>
 
-                <input type="submit" name="submitted" value="Filtrer">
+                <input type="submit" class="filtre" name="submitted" value="Filtrer">
             </form>
 
 </div>
