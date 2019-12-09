@@ -129,12 +129,13 @@ foreach ($movies as $movie) {
     <div id="listefilm">
         <div class="wrap">
 
-            <a href="details.php?id=<?php echo $movie['id']; ?>"><img class="affichefilm"
+            <a href="details.php?slug=<?php echo $movie['slug']; ?>"><img class="affichefilm"
                         src="<?php
                         $img = 'posters/' . $movie['id'] . '.jpg';
                         if (file_exists($img)){
                         echo $img;}else{
                             echo 'asset/img/dvd-logo.jpg';
+
                         } ?>" alt="<?= $movie['title']; ?>"></a>
 
             <h3>Titre : <?= $movie['title']; ?></h3>
