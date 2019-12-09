@@ -23,7 +23,7 @@ if (!empty($_GET['page'])) {
 }
 //inclus les paramètres d'offset pour la pagination et order by DESC
 $sql = "SELECT * FROM movies_full
-ORDER BY RAND()
+ORDER BY id DESC
  LIMIT $num 
  OFFSET $offset ";
 $query = $pdo->prepare($sql);
@@ -34,9 +34,9 @@ $movies = $query->fetchAll();
 $sql = "SELECT COUNT(*) FROM movies_full";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
-$count = $stmt->fetchColumn();
-
-paginationIdeaSeefilm($page, $num, $count);
+$count = $stmt->fetchColumn();?>
+<a href="index.php">Home</a>
+<?php paginationIdeaSeefilm($page, $num, $count);
 foreach ($movies as $movie) {
 
     ;; ?>

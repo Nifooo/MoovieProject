@@ -4,40 +4,36 @@ include('inc/pdo.php');
 include('function/function.php');
 
 $success = false;
-if (!empty ($_GET['id']) && is_numeric($_GET['id'])) {
-    $id = $_GET['id'];
+if (isLogged()) {
+    if (!empty ($_GET['id']) && is_numeric($_GET['id'])) {
+        $movie_id = $_GET['id'];
 //Select=colonne; FROM= table; WHERE -> col1 = valeur; AND col2 = valeur2; ORDER BY = col ASC/DESC ; LIMIT = combien;
-    $sql = "SELECT * FROM movies_full
-            WHERE id = $id";
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    $movie = $query->fetch();
+        $sql = "SELECT * FROM movies_full
+            WHERE id = $movie_id";
+        $query = $pdo->prepare($sql);
+        $query->execute();
+        $movie = $query->fetch();
 
-    if (!empty($_SESSION['login']['id'])){
-        $users = $_SESSION['login']['id'];
-
+        //where id = movie
+        //if exist
 
         if (!empty($movie)) {
-            $_POST['login']['id'];
+            $user_id = $_SESSION['login']['id'];
 //UPDATE
             $success = true;
             $sql = "INSERT INTO movie_user
-               VALUE ('',:users,:id,'',NOW(),'')
+               VALUE ('',:user_id,:movie_id,null,NOW(),'')
               ";
             $query = $pdo->prepare($sql);
-            $query->bindValue(':id', $id, PDO::PARAM_INT);
-            $query->bindValue(':users', $users, PDO::PARAM_STR);
+            $query->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+            $query->bindValue(':movie_id', $movie_id, PDO::PARAM_STR);
             $query->execute();
-
+            // $tests = $query->fetchAll();
             header("Location: aVoir.php");
 
 
-        } }else {
-        //die('404');
+        }
+    } else {
+        echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
     }
-
-
 }
-
-
-include('inc/header.php');

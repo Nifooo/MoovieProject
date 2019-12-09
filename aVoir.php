@@ -2,66 +2,47 @@
 session_start();
 require('inc/pdo.php');
 require('function/function.php');
-$title = 'Films à voir';
+$title = 'Film a voir';
 $errors = array();
 $succes = false;
 
-/*if ( isLogged()){
-if (!empty($_GET['token']) && $_GET['email']) {
- $token = clean($_GET['token']);
-    $email = clean($_GET['email']);
-    $email = urldecode($_GET['email']);
-    $sql = "SELECT email,token FROM users WHERE email = :email AND token = :token";
+if (isLogged()) {
+    $idusers = $_SESSION['login']['id'];
+    $sql = "SELECT * FROM movie_user AS mu
+      LEFT JOIN movies_full AS mf ON mf.id = mu.movie_id
+      WHERE mu.user_id = $idusers
+      AND note IS NULL";
+
     $query = $pdo->prepare($sql);
-    $query->bindValue(':email', $email, PDO::PARAM_STR);
-    $query->bindValue(':token', $token, PDO::PARAM_STR);
-
     $query->execute();
-    $user = $query->fetch();
-    if(!empty($user)) {
+    $movie = $query->fetchAll();
 
-        if (!empty($_POST['sumbitted'])) {
-            $password1 = clean($_POST['']);
-            $password2 =  clean($_POST['']);
-            if (!empty($password1)) {
-                if ($password1 != $password2) {
-                    $errors['password'] = 'Les deux mot de passe doivent être identique';
-                } elseif (mb_strlen($password1) <= 5) {
-                    $errors['password'] = 'Min 6 caractères';
-                }
+//requete film a voir
 
 
-            }else{
-                $errors['password'] = 'Veuillez renseigné ce champ';
-            }
-            if (count($errors)==0){
-                $hashpsw = password_hash($password1, PASSWORD_BCRYPT);
-                $token = generateRandomString(200);
-                $sql = "UPDATE users SET password = :password, token = :token WHERE email = :email";
-                $query = $pdo->prepare($sql);
+} else {
+    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
+}
+require('inc/header.php');
+//foreach
+foreach ($movie as $movia) {
+    ?>
+    <div id="listefilm">
+        <div class="wrap">
 
-                $query->bindValue(':email', $email, PDO::PARAM_STR);
-                $query->bindValue(':password', $hashpsw, PDO::PARAM_STR);
-                $query->bindValue(':token', $token, PDO::PARAM_STR);
-                $query->execute();
-                header('Location: index.php');
-            }
-        } else {
-            die('404');
-        }
+            <a href="details.php?id=<?php echo $movia['id']; ?>"><img class="affichefilm"
+                                                                      src="<?php
+                                                                      $img = 'posters/' . $movia['id'] . '.jpg';
+                                                                      if (file_exists($img)) {
+                                                                          echo $img;
+                                                                      } else {
+                                                                          echo 'asset/img/dvd-logo.jpg';
+                                                                      } ?>" alt="<?= $movia['title']; ?>"></a>
 
+            <h3>Titre : <?= $movia['title']; ?></h3>
 
-    }
-}*/
-include('inc/header.php');
-?>
-    <h1>Films à voir</h1>
+        </div>
+    </div>
+<?php }
 
-
-
-<?php
-/*}else{
-    echo 'Erreur 403, vous n&apos;avez pas accès a cette fonctionnalité';
-}*/
 include('inc/footer.php');
-
