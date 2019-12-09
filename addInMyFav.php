@@ -22,7 +22,7 @@ if (!empty ($_GET['id']) && is_numeric($_GET['id'])) {
 //UPDATE
         $success = true;
         $sql = "INSERT INTO movie_user
-               VALUE ('',:users,:id,'',NOW(),'')
+               VALUE ('',:users,:id,null,NOW(),'')
               ";
         $query = $pdo->prepare($sql);
         $query->bindValue(':id', $id, PDO::PARAM_INT);
