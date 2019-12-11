@@ -11,7 +11,7 @@ if ($_GET['id'] && is_numeric($_GET['id'])){
     $query -> execute();
 
     echo "Vous avez bien supprimé votre utilsateurs";
-    header("Location: aVoir.php");
+    header("Location: index.php");
 
 }
 

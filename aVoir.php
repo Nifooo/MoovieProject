@@ -54,6 +54,8 @@ WHERE movie_id = :idmovie AND user_id = :userid";
         $query->bindValue(':idmovie', $idmovie, PDO::PARAM_INT);
         $query->bindValue(':note', $note, PDO::PARAM_STR);
         $query->execute();
+        header("Location: favUsers.php");
+
     }
 }
 
