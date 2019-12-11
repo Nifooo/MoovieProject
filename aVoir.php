@@ -58,9 +58,10 @@ WHERE movie_id = :idmovie AND user_id = :userid";
 }
 
 
-require('inc/header.php');
-//foreach
-foreach ($movie as $movia) { ?>
+require('inc/header.php'); ?>
+
+<h5>Films à voir</h5>
+<?php foreach ($movie as $movia) { ?>
 
     <div id="listefilm">
         <div class="wrap">
