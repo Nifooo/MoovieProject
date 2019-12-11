@@ -2,72 +2,90 @@
 session_start();
 require('inc/pdo.php');
 require('function/function.php');
+require('vendor/autoload.php');
+
+use JasonGrimes\Paginator;
+
 $title = 'Home Page';
 $errors = array();
 $succes = false;
-if (idAdmin()){
-//Select=colonne; FROM= table; WHERE -> col1 = valeur; AND col2 = valeur2; ORDER BY = col ASC/DESC ; LIMIT = combien;
-//nombre de film par page
-$num = 100;
-
-//numéro de page
+if (idAdmin()) {}else {
+    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
+}
 $page = 1;
+if(!empty($_GET['page'])){
+    $page = $_GET['page'];
+}
+
+
+//nombre de film 100
+    $num = 100;
+
 
 //offset par défaut
-$offset = 0;
+    $offset = 0;
+//affichage film random
 
-//écrasée par celui de l'URL si get['page'] n'est pas vide
-if (!empty($_GET['page'])) {
-    $page = $_GET['page'];
-    $offset = $page * $num - $num;
-}
+
 //inclus les paramètres d'offset pour la pagination et order by DESC
-$sql = "SELECT * FROM movies_full
+    $sql = "SELECT * FROM movies_full
 ORDER BY id DESC
  LIMIT $num 
  OFFSET $offset ";
-$query = $pdo->prepare($sql);
-$query->execute();
-$movies = $query->fetchAll();
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    $movies = $query->fetchAll();
 
 //requête pour compter le nombre de lignes dans la table
-$sql = "SELECT COUNT(*) FROM movies_full";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$count = $stmt->fetchColumn();?>
-<a href="index.php">Home</a>
-<?php paginationIdeaSeefilm($page, $num, $count);
-foreach ($movies as $movie) {
+    $sql = "SELECT COUNT(*) FROM movies_full";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $count = $stmt->fetchColumn();
 
-    ;; ?>
-    <section id="listefilm">
-        <div class="wrap">
-            <div class="centrage">
-                <div class="organisation">
+$totalItems = $count; //count(movie)
+$itemsPerPage = 50;
+$currentPage = $page;
+$urlPattern = 'SeeFilmAdmin.php?page=(:num)';
+
+$paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
+
+    ?>
+    <a href="index.php">Home</a>
+    <?php
+    foreach ($movies as $movie) {
+
+        ;; ?>
+        <section id="listefilm">
+            <div class="wrap">
+                <div class="centrage">
+                    <div class="organisation">
 
 
-                    <a href="details.php?id=<?php echo $movie['id']; ?>"><img
-                            src="<?php
-                            $img = 'posters/' . $movie['id'] . '.jpg';
-                            if (file_exists($img)){
-                                echo $img;}else{
-                                echo 'asset/img/dvd-logo.jpg';
-                            } ?>" alt="<?= $movie['title']; ?>"></a>
+                        <a href="details.php?id=<?php echo $movie['id']; ?>"><img
+                                    src="<?php
+                                    $img = 'posters/' . $movie['id'] . '.jpg';
+                                    if (file_exists($img)) {
+                                        echo $img;
+                                    } else {
+                                        echo 'asset/img/dvd-logo.jpg';
+                                    } ?>" alt="<?= $movie['title']; ?>"></a>
 
-                    <h3>Titre : <?= $movie['title']; ?></h3>
+                        <h3>Titre : <?= $movie['title']; ?></h3>
 
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
 
-<?php }
-paginationIdeaSeefilm($page, $num, $count);
+    <?php } ?>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<?php
+
+    echo $paginator;
     echo '<li><a href="index.php">Accueil</a></li>';
-}else{
-    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
-}
+
 
 
 include('inc/footer.php');
