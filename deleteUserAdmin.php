@@ -10,7 +10,7 @@ if ($_GET['id'] && is_numeric($_GET['id'])){
         $id = $_GET['id'];
         $sql = "DELETE FROM users WHERE id = $id";
         $query = $pdo ->prepare($sql);
-        //$query -> bindValue(':id',$id,PDO::PARAM_INT);
+        //$query -> bindValue(':id',$id,PDO::PARAM_INT);y
         $query -> execute();
 
         echo "Vous avez bien supprimé votre utilsateurs";
