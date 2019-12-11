@@ -9,9 +9,7 @@ use JasonGrimes\Paginator;
 $title = 'Home Page';
 $errors = array();
 $succes = false;
-if (idAdmin()) {}else {
-    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
-}
+if (!idAdmin()) {die('403');}
 $page = 1;
 if(!empty($_GET['page'])){
     $page = $_GET['page'];
@@ -29,7 +27,7 @@ if(!empty($_GET['page'])){
 
 //inclus les paramètres d'offset pour la pagination et order by DESC
     $sql = "SELECT * FROM movies_full
-ORDER BY id DESC
+ORDER BY popularity DESC
  LIMIT $num 
  OFFSET $offset ";
     $query = $pdo->prepare($sql);
@@ -52,6 +50,7 @@ $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern
     ?>
     <a href="index.php">Home</a>
     <?php
+
     foreach ($movies as $movie) {
 
         ;; ?>

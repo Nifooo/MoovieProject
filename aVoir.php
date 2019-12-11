@@ -6,7 +6,7 @@ $title = 'Film a voir';
 $errors = array();
 $succes = false;
 
-if (isLogged()) {
+if (!isLogged()) {die('403');}
     $idusers = $_SESSION['login']['id'];
     $sql = "SELECT * FROM movie_user AS mu
       LEFT JOIN movies_full AS mf ON mf.id = mu.movie_id
@@ -50,9 +50,7 @@ die('ok');
                  }
     }
 
-} else {
-    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
-}
+
 require('inc/header.php');
 //foreach
 foreach ($movie as $movia) { ?>
