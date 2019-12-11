@@ -31,8 +31,6 @@ if (idAdmin()){
         echo '</div>';
     } ?>
     </div>
-<?php echo '<li><a href="index.php">Accueil</a></li>';
-
-}else{
+<?php }else{
     echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
 }
