@@ -89,6 +89,7 @@ require('inc/header.php'); ?>
                 <input type="submit" name="submitted" value="Votez">
                 <input type="hidden" name="jj" value="<?= $movia['id'] ?>">
             </form>
+            <br><a href="suppFilmAvoir.php?id=<?=$movia['id']?>"><span>Supprimer</span></a>
         </div>
     </div>
 
