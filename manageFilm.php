@@ -5,7 +5,6 @@ require('function/function.php');
 $title = 'Manage Users';
 $errors = array();
 $succes = false;
-include('inc/footer.php');
 if (idAdmin()){
     $sql = "SELECT * FROM movies_full
         WHERE 1";
@@ -44,26 +43,32 @@ ORDER BY RAND()
     $count = $stmt->fetchColumn();
 
 
-//debug($users); ?>
+//debug($users);
+    include('inc/header.php'); ?>
 
-    <h1 id="gens">Show film</h1>
+    <h1 id="gens">Modifier les films</h1>
     <?php
     paginationIdeaManageFilm($page, $num, $count);
     foreach ($movies as $movie) {
-        echo '<div class="user">';
-        echo '- ' . $movie['title'] . ' ' . $movie['created']. '';?>
-        <a href="details.php?id=<?php echo $movie['id']; ?>"><img
-                src="<?php
-                $img = 'posters/' . $movie['id'] . '.jpg';
-                if (file_exists($img)){
-                    echo $img;}else{
-                    echo 'asset/img/dvd-logo.jpg';
-                } ?>" alt="<?= $movie['title']; ?>"></a>
-        <?php
-//debug($users);
+        echo '<div class="user">'; ?>
+<section id="listefilm">
+    <div class="wrap">
 
-        echo '<br><a href="updateFilm.php?id='. $movie['id'] . '"><span>Edit</span></a>';
-        echo '<br><a href="deleteFilm.php?id=' . $movie['id'] . '"><span>Delete</span></a>';
+        <a href="details.php?id=<?php echo $movie['id']; ?>"><img
+                    src="<?php
+                    $img = 'posters/' . $movie['id'] . '.jpg';
+                    if (file_exists($img)){
+                        echo $img;}else{
+                        echo 'asset/img/dvd-logo.jpg';
+                    } ?>" alt="<?= $movie['title']; ?>"></a>
+
+        <h3>Titre : <?= $movie['title']; ?></h3>
+    </div>
+</section>
+<?php //debug($users);
+
+        echo '<br><a href="updateFilm.php?id='. $movie['id'] . '"><span>Modifier</span></a>';
+        echo '<br><a href="deleteFilm.php?id=' . $movie['id'] . '"><span>Supprimer</span></a>';
 
         echo '</div>';
     }
@@ -72,3 +77,5 @@ ORDER BY RAND()
 }else{
     echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
 }
+
+include('inc/footer.php');

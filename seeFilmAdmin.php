@@ -37,14 +37,16 @@ $stmt->execute();
 $count = $stmt->fetchColumn();?>
 <a href="index.php">Home</a>
 <?php paginationIdeaSeefilm($page, $num, $count);
+    include ('inc/header.php');
 foreach ($movies as $movie) {
 
     ;; ?>
+
+
+
+
     <section id="listefilm">
         <div class="wrap">
-            <div class="centrage">
-                <div class="organisation">
-
 
                     <a href="details.php?id=<?php echo $movie['id']; ?>"><img
                             src="<?php
@@ -55,9 +57,6 @@ foreach ($movies as $movie) {
                             } ?>" alt="<?= $movie['title']; ?>"></a>
 
                     <h3>Titre : <?= $movie['title']; ?></h3>
-
-                </div>
-            </div>
         </div>
     </section>
 

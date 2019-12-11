@@ -300,9 +300,12 @@ PAGE ADMIN
 }
 
 .manageuser {
-    margin-left: 30%;
+    margin-left: 40%;
 }
 
+.manageuser div {
+    padding-bottom: 30px;
+}
 
 
 
