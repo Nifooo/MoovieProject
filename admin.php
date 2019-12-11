@@ -35,9 +35,6 @@ if (idAdmin()){?>
                 <li>
                     <a href="addMovie.php" ><i class="fa fa-qrcode "></i>Ajouter un film</a>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i>Ajouter un utilisateur</a>
-                </li>
 
 
             </ul>
@@ -49,7 +46,7 @@ if (idAdmin()){?>
         <div id="page-inner">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>ADMIN DASHBOARD</h2>
+                    <h2>Accueil Admin</h2>
                 </div>
             </div>
 
@@ -57,7 +54,7 @@ if (idAdmin()){?>
             <div class="row">
                 <div class="col-lg-12 ">
                     <div class="alert alert-info">
-                        <strong>Welcome Admin ! </strong>
+                        <strong>Bienvenue aux administrateurs</strong>
                     </div>
 
                 </div>
@@ -67,7 +64,7 @@ if (idAdmin()){?>
                     <div class="div-square">
                         <a href="manageUsers.php" >
                             <i class="fa fa-users fa-5x"></i>
-                            <h4>See Users</h4>
+                            <h4>Voir les utilisateurs</h4>
                         </a>
                     </div>
 
@@ -77,7 +74,7 @@ if (idAdmin()){?>
                 <div class="div-square">
                     <a href="seeFilmAdmin.php" >
                         <i class="fa fa-user fa-5x"></i>
-                        <h4>See Film</h4>
+                        <h4>Voir la liste des films</h4>
                     </a>
                 </div>
 
@@ -86,7 +83,7 @@ if (idAdmin()){?>
                 <div class="div-square">
                     <a href="manageFilm.php" >
                         <i class="fa fa-user fa-5x"></i>
-                        <h4>Manage Film</h4>
+                        <h4>Modifier les films</h4>
                     </a>
                 </div>
 

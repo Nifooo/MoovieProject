@@ -3,6 +3,7 @@ include('inc/pdo.php');
 include('function/function.php');
 $errors = array();
 $success = false;
+session_start();
 if (idAdmin()) {
 
 if (!empty($_POST['submit'])) {
@@ -58,7 +59,7 @@ if (!empty($_POST['submit'])) {
 include('inc/header.php');
 
 if($success) { ?>
-    <p class="success">Votre film à bien été posté. <a href="admin.php"> Retour à l'accueil</a></p>
+    <p class="success">Votre film à bien été posté. <a href="admin.php"> Retour au pannel admin</a></p>
 <?php } else { ?>
 
 <div class="wrap">
@@ -103,8 +104,7 @@ if($success) { ?>
         <input type="number" name="poster" id="poster" placeholder="Poster Flag" value="<?php if (!empty($_POST['poster_flag'])) { echo $_POST['poster_flag']; } ?>">
         <span class="error"><?php if (!empty($errors['poster_flag'])) { echo $errors['poster_flag']; } ?></span>
 
-
-        <input type="submit" name="submit" value="Ajouter le film">
+        <input type="submit" class="adminenvoi" name="submit" value="Ajouter le film">
 
     </form>
 </div>
