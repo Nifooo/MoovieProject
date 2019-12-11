@@ -4,10 +4,10 @@ include('function/function.php');
 $title = 'Update';
 $errors = array();
 $success = false;
-if (idAdmin()) {
+if (!idAdmin()) {header("Location: 403.html");}
     if (!empty ($_GET['id']) && is_numeric($_GET['id'])) {
         $id = $_GET['id'];
-
+    }
 //Select=colonne; FROM= table; WHERE -> col1 = valeur; AND col2 = valeur2; ORDER BY = col ASC/DESC ; LIMIT = combien;
         $sql = "SELECT * FROM movies_full
             WHERE ID = $id";
@@ -59,10 +59,6 @@ if (idAdmin()) {
         } else {
             die('404');
         }
-
-    } else {
-        die('404');
-    }
 //debug($citys);
     include('inc/header.php');
     ?>
@@ -165,7 +161,5 @@ if (idAdmin()) {
             <input type="hidden" name="city"/>
         </form>
     <?php }
-} else {
-    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
-}
+
 include('inc/footer.php');

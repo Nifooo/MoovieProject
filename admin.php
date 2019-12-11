@@ -5,7 +5,7 @@ require('function/function.php');
 $title = 'Pannel Admin';
 $errors = array();
 $succes = false;
-if (!idAdmin()) {die('403');} ?>
+if (!idAdmin()) {header("Location: 403.html");} ?>
 
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">

@@ -6,7 +6,7 @@ $title = 'Film a voir';
 $errors = array();
 $succes = false;
 
-if (!isLogged()) {die('403');}
+if (!isLogged()) {header("Location: 403.html");}
     $idusers = $_SESSION['login']['id'];
     $sql = "SELECT * FROM movie_user AS mu
       LEFT JOIN movies_full AS mf ON mf.id = mu.movie_id
@@ -28,7 +28,7 @@ if (!isLogged()) {die('403');}
 
         // SELECT
         $sql = "SELECT * FROM movie_user 
-WHERE movie_id = :idmovie AND userid = :userid";
+WHERE movie_id = :idmovie AND user_id = :userid";
         $query->bindValue(':idmovie', $idmovie, PDO::PARAM_STR);
         $query->bindValue(':userid', $userid, PDO::PARAM_STR);
 

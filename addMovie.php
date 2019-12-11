@@ -4,7 +4,7 @@ include('function/function.php');
 $errors = array();
 $success = false;
 session_start();
-if (!idAdmin()) {die('403');} 
+if (!idAdmin()) {header("Location: 403.html");}
 
 
 if (!empty($_POST['submit'])) {

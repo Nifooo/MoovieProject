@@ -9,7 +9,7 @@ $title = 'Manage Users';
 $errors = array();
 $succes = false;
 include('inc/footer.php');
-if (!idAdmin()) {die('403');}
+if (!idAdmin()) {header("Location: 403.html");}
 $page = 1;
 if(!empty($_GET['page'])){
     $page = $_GET['page'];
