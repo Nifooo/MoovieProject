@@ -23,6 +23,9 @@ $query->execute();
 $favUsers = $query->fetchAll();
 //debug($favUsers);
 require('inc/header.php');
+?>
+    <h5>Films noté</h5>
+<?php
 foreach ($favUsers As $favUser){
     ?>
 
