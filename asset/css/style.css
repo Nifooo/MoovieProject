@@ -280,7 +280,7 @@ PAGE ADMIN
     margin: 40px 40%;
 }
 
-.adminform input[type=text], .adminform input[type=number] {
+.adminform input[type=text], .adminform input[type=number], .adminform input[type=date] {
     width: 260px;
     height: 40px;
     margin-top: 30px;
