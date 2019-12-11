@@ -53,9 +53,7 @@ include ('inc/header.php');?>
 
     foreach ($movies as $movie) {
         ?>
-        <div class="user">
-        <p>-Titre :<?= $movie['title']?></p>
-        <p>-Crée :<?=$movie['created']?></p>
+        <div id="listefilm">
         <a href="details.php?id=<?php echo $movie['id']; ?>"><img
                 src="<?php
                 $img = 'posters/' . $movie['id'] . '.jpg';
@@ -63,8 +61,8 @@ include ('inc/header.php');?>
                     echo $img;}else{
                     echo 'asset/img/dvd-logo.jpg';
                 } ?>" alt="<?= $movie['title']; ?>"></a>
-        <a href="updateFilm.php?id=<?=$movie['id']?>"><span>Edit</span>
-        <br><a href="deleteFilm.php?id=<?=$movie['id']?>"><span>Delete</span></a>
+        <a href="updateFilm.php?id=<?=$movie['id']?>"><span>Modifier</span>
+        <br><a href="deleteFilm.php?id=<?=$movie['id']?>"><span>Supprimer</span></a>
 
         </div>
    <?php } ?>

@@ -47,7 +47,7 @@ include('inc/header.php'); ?>
 <?php
 if (!empty($user)) {
     if (!empty($_GET['email']) && !empty($_GET['token'])) { ?>
-        <form action="" method="post">
+        <form action="" class="inscri" method="post">
             <label for="password1"> Nouveau mot de passe : </label>
             <input type="password" name="password1" id="password1" value="">
             <p class="error"><?php if (!empty($errors['password'])) {

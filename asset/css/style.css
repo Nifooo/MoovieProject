@@ -146,6 +146,10 @@ PAGE DE REGISTER
     margin-left: 39.5%;
 }
 
+.inscri a {
+    margin-left: 8.5%;
+}
+
 .inscri label {
     font-size: 1.2em;
     display: block;
@@ -159,6 +163,10 @@ PAGE DE REGISTER
     height: 30px;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.inscri input[type=password] {
+    margin-bottom: 40px;
 }
 
 .inscri input[type=submit] {
