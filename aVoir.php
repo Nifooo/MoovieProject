@@ -34,7 +34,7 @@ WHERE movie_id = :idmovie AND user_id = :userid";
 
         $query = $pdo->prepare($sql);
         $query->execute();
-        $fav = $query->fetch();
+        $fav = $query->fetchAll();
 debug($sql);
 debug($fav);
 die('ok');
