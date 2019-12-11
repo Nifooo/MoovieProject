@@ -6,49 +6,56 @@ $title = 'Film a voir';
 $errors = array();
 $succes = false;
 
-if (!isLogged()) {header("Location: 403.html");}
-    $idusers = $_SESSION['login']['id'];
-    $sql = "SELECT * FROM movie_user AS mu
+if (!isLogged()) {
+    header("Location: 403.html");
+}
+$idusers = $_SESSION['login']['id'];
+$sql = "SELECT * FROM movie_user AS mu
       LEFT JOIN movies_full AS mf ON mf.id = mu.movie_id
       WHERE mu.user_id = $idusers
       AND note IS NULL";
 
-    $query = $pdo->prepare($sql);
-    $query->execute();
-    $movie = $query->fetchAll();
-    //debug($movie);
+$query = $pdo->prepare($sql);
+$query->execute();
+$movie = $query->fetchAll();
+//debug($movie);
 //requete film a voir
-    if (!empty($_POST['submitted'])) {
+if (!empty($_POST['submitted'])) {
 
 
-        $idmovie = $_POST['jj'];
-        $userid = $_SESSION['login']['id'];
-        // jj  movie du film
-        // $user_id
+    $idmovie = $_POST['jj'];
+    $userid = $_SESSION['login']['id'];
+    $star = $_POST['star'];
+    // jj  movie du film
+    echo '<p>' . $idmovie . ' & ' . $userid . ' & ' . $star . '</p>';
+    // $user_id
 
-        // SELECT
-        $sql = "SELECT * FROM movie_user 
+    // SELECT
+    $sql = "SELECT * FROM movie_user 
 WHERE movie_id = :idmovie AND user_id = :userid";
-        $query->bindValue(':idmovie', $idmovie, PDO::PARAM_STR);
-        $query->bindValue(':userid', $userid, PDO::PARAM_STR);
+    $query = $pdo->prepare($sql);
+    $query->bindValue(':idmovie', $idmovie, PDO::PARAM_INT);
+    $query->bindValue(':userid', $userid, PDO::PARAM_INT);
 
-        $query = $pdo->prepare($sql);
-        $query->execute();
-        $fav = $query->fetchAll();
-debug($sql);
-debug($fav);
-die('ok');
-        //  request
-        if (!empty($fav)){
+
+    $query->execute();
+    $fav = $query->fetchAll();
+//debug($sql);
+
+    //  request
+    if (!empty($fav)) {
         $note = clean($_POST['star']);
         $sql = "UPDATE movie_user
-    SET note = :note
-    WHERE ID = $fav";
-        $query->bindValue(':note', $note, PDO::PARAM_STR);
+    SET note = :note , modified_at = NOW()
+    WHERE movie_id = :idmovie AND user_id = :userid";
         $query = $pdo->prepare($sql);
+        $query->bindValue(':userid', $userid, PDO::PARAM_INT);
+
+        $query->bindValue(':idmovie', $idmovie, PDO::PARAM_INT);
+        $query->bindValue(':note', $note, PDO::PARAM_STR);
         $query->execute();
-                 }
     }
+}
 
 
 require('inc/header.php');
@@ -60,13 +67,13 @@ foreach ($movie as $movia) { ?>
 
             <a href="details.php?slug=<?php echo $movia['slug']; ?>"><img class="affichefilm"
 
-              src="<?php $img = 'posters/' . $movia['id'] . '.jpg';
+                                                                          src="<?php $img = 'posters/' . $movia['id'] . '.jpg';
 
-              if (file_exists($img)) {
-                  echo $img;
-              } else {
-                  echo 'asset/img/dvd-logo.jpg';
-              } ?>" alt="<?= $movia['title']; ?>"></a>
+                                                                          if (file_exists($img)) {
+                                                                              echo $img;
+                                                                          } else {
+                                                                              echo 'asset/img/dvd-logo.jpg';
+                                                                          } ?>" alt="<?= $movia['title']; ?>"></a>
 
             <h3>Titre : <?= $movia['title']; ?></h3>
 
@@ -86,5 +93,5 @@ foreach ($movie as $movia) { ?>
 
 
 <?php } ?>
-<div class="clear"></div>
+    <div class="clear"></div>
 <?php include('inc/footer.php');
