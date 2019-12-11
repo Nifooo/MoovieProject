@@ -4,7 +4,8 @@ include('function/function.php');
 $errors = array();
 $success = false;
 session_start();
-if (idAdmin()) {
+if (!idAdmin()) {die('403');} 
+
 
 if (!empty($_POST['submit'])) {
     $titre = clean($_POST['titre']);
@@ -110,5 +111,5 @@ if($success) { ?>
 </div>
 <div class="clear"></div> <?php }
 
-} else {echo '403';}
+
 include('inc/footer.php');
