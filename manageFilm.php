@@ -67,7 +67,7 @@ ORDER BY RAND()
 </section>
 <?php //debug($users);
 
-        echo '<br><a href="updateFilm.php?id='. $movie['id'] . '"><span>Modifier</span></a>';
+        echo '<br><a href="updateFilm.php?id='.  $movie['id'] . '"><span>Modifier</span></a>';
         echo '<br><a href="deleteFilm.php?id=' . $movie['id'] . '"><span>Supprimer</span></a>';
 
         echo '</div>';
