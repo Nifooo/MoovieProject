@@ -5,8 +5,8 @@ require('function/function.php');
 $title = 'Home Page';
 $errors = array();
 $succes = false;
-if (idAdmin()){
-    if ($_GET['id'] && is_numeric($_GET['id'])){
+if (!idAdmin()) {die('403');}
+if ($_GET['id'] && is_numeric($_GET['id'])){
         $id = $_GET['id'];
         $sql = "DELETE FROM users WHERE id = $id";
         $query = $pdo ->prepare($sql);
@@ -18,9 +18,7 @@ if (idAdmin()){
 
     }
 
-}else{
-    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
-}
+
 
 
 include('inc/footer.php');

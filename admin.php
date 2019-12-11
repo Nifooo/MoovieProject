@@ -5,7 +5,7 @@ require('function/function.php');
 $title = 'Pannel Admin';
 $errors = array();
 $succes = false;
-if (idAdmin()){?>
+if (!idAdmin()) {die('403');} ?>
 
     <!DOCTYPE html>
     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -110,9 +110,7 @@ if (idAdmin()){?>
 
 
 
-<?php }else{
-    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
-}
+<?php
 
 
 include('inc/footer.php');
