@@ -1,82 +1,69 @@
 <?php
-
-require('inc/pdo.php');
-require('function/function.php');
-$title = 'Home Page';
+session_start();
+include('inc/pdo.php');
+include('function/function.php');
 $errors = array();
-$succes = false;
-if (!empty($_GET['token']) && $_GET['email']) {
+$title = 'Modification mot de passe';
 
-    $token = clean($_GET['token']);
-    $email = clean($_GET['email']);
-    $email = urldecode($_GET['email']);
-    $sql = "SELECT email,token FROM users WHERE email = :email AND token = :token";
-    $query = $pdo->prepare($sql);
-    $query->bindValue(':email', $email, PDO::PARAM_STR);
-    $query->bindValue(':token', $token, PDO::PARAM_STR);
-
-    $query->execute();
-    $user = $query->fetch();
-    if(!empty($user)) {
-
-        if (!empty($_POST['sumbitted'])) {
-            $password1 = clean($_POST['']);
-            $password2 =  clean($_POST['']);
-            if (!empty($password1)) {
-                if ($password1 != $password2) {
-                    $errors['password'] = 'Les deux mot de passe doivent être identique';
-                } elseif (mb_strlen($password1) <= 5) {
-                    $errors['password'] = 'Min 6 caractères';
-//
-
-                }
-                die('404');
-
-
-            }else{
-                $errors['password'] = 'Veuillez renseigné ce champ';
-            }
-            if (count($errors)==0){
-                $hashpsw = password_hash($password1, PASSWORD_BCRYPT);
-                $token = generateRandomString(200);
-                $sql = "UPDATE users SET password = :password, token = :token WHERE email = :email";
-                $query = $pdo->prepare($sql);
-                die('404');
-
-
-                $query->bindValue(':email', $email, PDO::PARAM_STR);
-                $query->bindValue(':password', $hashpsw, PDO::PARAM_STR);
-                $query->bindValue(':token', $token, PDO::PARAM_STR);
-
-                $query->execute();
-                die('404');
-            }
-        } else {
-
-
+$sql = "SELECT * FROM users WHERE email = :email AND token = :token";
+$query = $pdo->prepare($sql);
+$query->bindValue(':email', urldecode($_GET['email']), PDO::PARAM_STR);
+$query->bindValue(':token', $_GET['token'], PDO::PARAM_STR);
+$query->execute();
+$user = $query->fetch();
+if (!empty($_POST['submitted'])) {
+    $password1 = clean($_POST['password1']);
+    $password2 = clean($_POST['password2']);
+    if (!empty($password1)) {
+        if ($password1 != $password2) {
+            $errors['password'] = 'Les 2 mots de passes doivent être identiques !';
+        } elseif (mb_strlen($password1) <= 5) {
+            $errors['password'] = 'Minimum 6 caractères';
+        } elseif (password_verify($password1, $user['password'])) {
+            $errors['password'] = 'Vous ne pouvez pas reprendre votre ancien mot de passe';
         }
-
-
+    } else {
+        $errors['password'] = 'Entrez un mot de passe !';
     }
-}else{
-
+    if (count($errors) == 0) {
+        // hash password
+        $hashpassword = password_hash($password1, PASSWORD_BCRYPT);
+        $token = generateRandomString(200);
+        //Insertion en BDD
+        $sql = "UPDATE users SET password = :password, token = :token WHERE email = :email";
+        $query = $pdo->prepare($sql);
+        $query->bindValue(':email', urldecode($_GET['email']), PDO::PARAM_STR);
+        $query->bindValue(':token', $token, PDO::PARAM_STR);
+        $query->bindValue(':password', $hashpassword, PDO::PARAM_STR);
+        $query->execute();
+// Redirection vers connection
+        header('Location: login.php');
+    }
 }
-include('inc/header.php');
-?>
-    <h1>Modifier mot de passe</h1>
-    <form action="" method="post">
-        <label for="password1">Mot de passe *</label>
-        <input type="password" id="password1" name="password1" value="">
-        <p class="error"><?php if (!empty($errors['password'])) {
-                echo $errors['password'];
-            } ?></p>
-
-
-        <label for="password2">Confirmation mdp *</label>
-        <input type="password" id="password2" name="password2" value="">
-
-        <input type="submit" name="submitted" value="Envoyer">
-    </form>
-
+include('inc/header.php'); ?>
+    <div class="clear"></div>
+    <div class="wrap">
+        <h1> Modifier votre mot de passe </h1>
 <?php
+if (!empty($user)) {
+    if (!empty($_GET['email']) && !empty($_GET['token'])) { ?>
+        <form action="" method="post">
+            <label for="password1"> Nouveau mot de passe : </label>
+            <input type="password" name="password1" id="password1" value="">
+            <p class="error"><?php if (!empty($errors['password'])) {
+                    echo $errors['password'];
+                } ?></p>
+
+
+            <label for="password2"> Confirmez votre mot de passe : </label>
+            <input type="password" name="password2" id="password2" value="">
+
+            <input type="submit" name="submitted" value="Modifier">
+        </form>
+    <?php } else {
+        echo 'Error 404';
+    }
+}
+?>  <div class="clear"></div>
+    </div><?php
 include('inc/footer.php');
