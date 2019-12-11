@@ -309,6 +309,41 @@ PAGE ADMIN
 
 
 
+/*////////////////////////////
+PAGE 403
+////////////////////////////*/
+
+
+.attention {
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.e403 {
+    text-align: center;
+    font-size: 5em;
+    text-transform: uppercase;
+    margin: 30px 0;
+}
+
+.back403 {
+    text-align: center;
+    font-size: 3em;
+}
+
+.back403 a {
+    color: red;
+}
+
+.back403 a:hover {
+    color: #fd2bff;
+}
+
+
+
+
 
 @media screen and (max-width: 950px) {
     #listefilm .organisation {
