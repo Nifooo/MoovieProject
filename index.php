@@ -71,11 +71,12 @@ if (!empty($_GET['submitted'])) {
     $sql .= " ORDER BY RAND()";
     $sql .= " LIMIT 4";
 
+
+        }
+    } //debug($_SESSION);
     $query = $pdo->prepare($sql);
     $query->execute();
     $movies = $query->fetchAll();
-        }
-    } //debug($_SESSION);
 }
 
 
@@ -151,12 +152,12 @@ include('inc/header.php');
             <input type="checkbox" class="adventure" name="cat[]" value="Adventure">
             <label for="adventure">Adventure</label>
 
+
+            <label for="datemin">/Date min :</label>
             <input type="text" class="datemin" name="min">
-            <label for="datemin">Date min :</label>
 
-            <input type="text" class="datemax" name="max">
             <label for="datemax">Date max :</label>
-
+            <input type="text" class="datemax" name="max">
 
 
             <input type="submit" class="filtre" name="submitted" value="Filtrer">
