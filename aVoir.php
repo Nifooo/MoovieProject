@@ -27,7 +27,7 @@ if (!empty($_POST['submitted'])) {
     $userid = $_SESSION['login']['id'];
     $star = $_POST['star'];
     // jj  movie du film
-    echo '<p>' . $idmovie . ' & ' . $userid . ' & ' . $star . '</p>';
+    //echo '<p>' . $idmovie . ' & ' . $userid . ' & ' . $star . '</p>';
     // $user_id
 
     // SELECT

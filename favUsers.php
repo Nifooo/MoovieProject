@@ -5,55 +5,47 @@ require('function/function.php');
 $title = 'Home Page';
 $errors = array();
 $succes = false;
-debug($_SESSION);
-$idusers = 2;
-//jointure
-$sql = "SELECT * FROM movie_user AS mu
-      LEFT JOIN movies_full AS mf ON mf.id = mu.movie_id
-      WHERE mu.user_id = $idusers
-        AND note IS NULL";
-$query = $pdo->prepare($sql);
-$query->execute();
-$un = $query->fetchAll();
 
 //debug($un);
 //die();
-if (isLogged()) {
+if (!isLogged()) {
+    header("Location: 403.html");
+}
+$userid = $_SESSION['login']['id'];
+
+$sql = "SELECT * FROM movie_user AS mu
+      LEFT JOIN movies_full AS mf ON mf.id = mu.movie_id
+      WHERE mu.user_id = $userid
+      AND note";
+
+$query = $pdo->prepare($sql);
+$query->execute();
+$favUsers = $query->fetchAll();
+//debug($favUsers);
+require('inc/header.php');
+foreach ($favUsers As $favUser){
+    ?>
 
 
+    <div id="listefilm">
+    <div class="wrap">
 
+    <a href="details.php?slug=<?php echo $favUser['slug']; ?>"><img class="affichefilm"
 
-        //pagination
+                                                                  src="<?php $img = 'posters/' . $favUser['id'] . '.jpg';
 
+                                                                  if (file_exists($img)) {
+                                                                      echo $img;
+                                                                  } else {
+                                                                      echo 'asset/img/dvd-logo.jpg';
+                                                                  } ?>" alt="<?= $favUser['title']; ?>"></a>
 
-        foreach ($favUsers as $favUser) {
-            ?>
+    <h3>Titre : <?= $favUser['title']; ?></h3>
+        <h4>Note : <?= $favUser['note']?>/5</h4>
+    </div>
+    </div>
 
-            <section id="listefilm">
-                <div class="wrap">
-                    <div class="centrage">
-                        <div class="organisation">
-
-
-                            <a href="details.php?id=<?php echo $favUser['movie_id']; ?>"><img
-                                        src="<?php
-                                        $img = 'posters/' . $favUser['movie_id'] . '.jpg';
-                                        if (file_exists($img)) {
-                                            echo $img;
-                                        } else {
-                                            echo 'asset/img/dvd-logo.jpg';
-                                        } ?>" alt=""></a>
-
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <?php
-        }
-    }
-
-include('inc/header.php');
-
-
-
+    <?php
+}?>
+<div class="clear"></div>
+<?php include('inc/footer.php');
