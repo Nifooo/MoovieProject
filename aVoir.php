@@ -20,6 +20,7 @@ if (isLogged()) {
 //requete film a voir
     if (!empty($_POST['submitted'])) {
 
+
         $idmovie = $_POST['jj'];
         $userid = $_SESSION['login']['id'];
         // jj  movie du film
@@ -27,11 +28,16 @@ if (isLogged()) {
 
         // SELECT
         $sql = "SELECT * FROM movie_user 
-WHERE $idmovie = :idmovie AND $userid = :userid";
+WHERE movie_id = :idmovie AND userid = :userid";
+        $query->bindValue(':idmovie', $idmovie, PDO::PARAM_STR);
+        $query->bindValue(':userid', $userid, PDO::PARAM_STR);
+
         $query = $pdo->prepare($sql);
         $query->execute();
-        $fav= $query->fetch();
-
+        $fav = $query->fetch();
+debug($sql);
+debug($fav);
+die('ok');
         //  request
         if (!empty($fav)){
         $note = clean($_POST['star']);
