@@ -153,7 +153,7 @@ include('inc/header.php');
             <label for="adventure">Adventure</label>
 
 
-            <label for="datemin">/Date min :</label>
+            <label for="datemin">/ Date min :</label>
             <input type="text" class="datemin" name="min">
 
             <label for="datemax">Date max :</label>
