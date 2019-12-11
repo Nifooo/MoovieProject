@@ -56,10 +56,10 @@ include('inc/header.php');
         <p class="error"><?php if (!empty($errors['password'])) {
                 echo $errors['password'];
             } ?></p>
-
+        <a href="forgetpsw.php">Mot de passe oublié ?</a>
         <input type="submit" name="submitted" value="Connectez-vous">
     </form>
-    <a href="forgetpsw.php">Mot de passe oublié</a>
+
 
 <?php
 include('inc/footer.php');

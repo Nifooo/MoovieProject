@@ -30,7 +30,7 @@ include('inc/header.php'); ?>
         <div class="clear"></div>
         <h1> Mot de passe oublié </h1>
 
-        <form action="" method="post">
+        <form class="inscri" action="" method="post">
             <label for="email">E-mail : </label>
             <input type="email" name="email" id="email" value="<?php if (!empty($_POST['email'])) {
                 echo $_POST['email'];
