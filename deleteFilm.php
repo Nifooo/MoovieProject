@@ -5,7 +5,7 @@ require('function/function.php');
 $title = 'Home Page';
 $errors = array();
 $succes = false;
-if (!idAdmin()) {die('403');}
+if (!idAdmin()) {header("Location: 403.html");}
 if ($_GET['id'] && is_numeric($_GET['id'])){
         $id = $_GET['id'];
         $sql = "DELETE FROM movies_full WHERE id = $id";

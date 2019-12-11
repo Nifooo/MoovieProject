@@ -9,7 +9,7 @@ use JasonGrimes\Paginator;
 $title = 'Home Page';
 $errors = array();
 $succes = false;
-if (!idAdmin()) {die('403');}
+if (!idAdmin()) {header("Location: 403.html");}
 $page = 1;
 if(!empty($_GET['page'])){
     $page = $_GET['page'];

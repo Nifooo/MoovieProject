@@ -5,7 +5,7 @@ require('function/function.php');
 $title = 'Manage Users';
 $errors = array();
 $succes = false;
-if (idAdmin()){
+if (!idAdmin()){header("Location: 403.html");}
     $sql = "SELECT * FROM users
         WHERE 1";
 
@@ -31,6 +31,4 @@ if (idAdmin()){
         echo '</div>';
     } ?>
     </div>
-<?php }else{
-    echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
-}
+<?php
