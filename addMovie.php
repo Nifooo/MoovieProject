@@ -3,22 +3,24 @@ include('inc/pdo.php');
 include('function/function.php');
 $errors = array();
 $success = false;
+session_start();
+if (!idAdmin()) {die('403');} 
 
 
 if (!empty($_POST['submit'])) {
-    $titre = clean($_POST['title']);
-    $annee = clean($_POST['years']);
-    $genre = clean($_POST['genres']);
-    $resume = clean($_POST['plot']);
-    $realisateur = clean($_POST['directors']);
-    $acteur = clean($_POST['cast']);
-    $scenariste = clean($_POST['writers']);
-    $vues = clean($_POST['runtime']);
+    $titre = clean($_POST['titre']);
+    $annee = clean($_POST['annee']);
+    $genre = clean($_POST['genre']);
+    $resume = clean($_POST['resume']);
+    $realisateur = clean($_POST['realisateur']);
+    $acteur = clean($_POST['acteur']);
+    $scenariste = clean($_POST['scenariste']);
+    $vues = clean($_POST['vues']);
     $mpaa = clean($_POST['mpaa']);
-    $popularite = clean($_POST['popularity']);
-    $poster = clean($_POST['poster_flag']);
-    $ratio = clean($_POST['rating']);
-    $slug = $title . '-' . $annee;
+    $popularite = clean($_POST['popularite']);
+    $poster = clean($_POST['poster']);
+    $ratio = clean($_POST['ratio']);
+    $slug = $titre . '-' . $annee;
 
     $errors = textWalid($errors, $titre, 'title',1, 255);
     $errors = textWalid($errors, $annee, 'years',1,11);
@@ -58,7 +60,7 @@ if (!empty($_POST['submit'])) {
 include('inc/header.php');
 
 if($success) { ?>
-    <p class="success">Votre film à bien été posté. <a href="admin.php"> Retour à l'accueil</a></p>
+    <p class="success">Votre film à bien été posté. <a href="admin.php"> Retour au pannel admin</a></p>
 <?php } else { ?>
 
 <div class="wrap">
@@ -103,12 +105,11 @@ if($success) { ?>
         <input type="number" name="poster" id="poster" placeholder="Poster Flag" value="<?php if (!empty($_POST['poster_flag'])) { echo $_POST['poster_flag']; } ?>">
         <span class="error"><?php if (!empty($errors['poster_flag'])) { echo $errors['poster_flag']; } ?></span>
 
-
-        <input type="submit" name="submit" value="Ajouter le film">
+        <input type="submit" class="adminenvoi" name="submit" value="Ajouter le film">
 
     </form>
 </div>
-<div class="clear"></div> <?php } ?>
+<div class="clear"></div> <?php }
 
 
-<?php include('inc/footer.php');
+include('inc/footer.php');

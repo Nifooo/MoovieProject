@@ -5,7 +5,6 @@ require('function/function.php');
 $title = 'Manage Users';
 $errors = array();
 $succes = false;
-include('inc/footer.php');
 if (idAdmin()){
     $sql = "SELECT * FROM users
         WHERE 1";
@@ -15,20 +14,24 @@ if (idAdmin()){
     $query->execute();
     $users = $query->fetchAll();
 
-//debug($users); ?>
+//debug($users);
 
-    <h1 id="gens">Show users</h1>
+    include('inc/header.php'); ?>
+
+    <h1 id="gens">Tous les utilisateurs</h1>
+    <div class="manageuser">
     <?php foreach ($users as $user) {
         echo '<div class="user">';
         echo '- ' . $user['pseudo'] . ' ' . $user['email']. '';
 //debug($users);
 
-        echo '<br><a href=#><span>Edit</span></a>';
-        echo '<br><a href="deleteUserAdmin.php?id=' . $user['id'] . '"><span>Delete</span></a>';
+        echo '<br><a href=#><span>Modifier</span></a>';
+        echo '<br><a href="deleteUserAdmin.php?id=' . $user['id'] . '"><span>Supprimer</span></a>';
 
         echo '</div>';
-    }
-echo '<li><a href="index.php">Accueil</a></li>';
+    } ?>
+    </div>
+<?php echo '<li><a href="index.php">Accueil</a></li>';
 
 }else{
     echo "Erreur 403, vous n'avez pas accès a cette fonctionnalité";
