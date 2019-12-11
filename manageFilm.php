@@ -8,8 +8,7 @@ use JasonGrimes\Paginator;
 $title = 'Manage Users';
 $errors = array();
 $succes = false;
-include('inc/footer.php');
-if (!idAdmin()) {header("Location: 403.html");}
+if (!idAdmin()) {die('403');}
 $page = 1;
 if(!empty($_GET['page'])){
     $page = $_GET['page'];
@@ -47,9 +46,9 @@ $urlPattern = 'SeeFilmAdmin.php?page=(:num)';
 
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 
-?>
+include ('inc/header.php');?>
 
-    <h1 id="gens">Show film</h1>
+    <h1 id="gens">Modifier les films</h1>
     <?php
 
     foreach ($movies as $movie) {

@@ -48,9 +48,8 @@ $urlPattern = 'SeeFilmAdmin.php?page=(:num)';
 $paginator = new Paginator($totalItems, $itemsPerPage, $currentPage, $urlPattern);
 
     ?>
-    <a href="index.php">Home</a>
     <?php
-
+include ('inc/header.php');
     foreach ($movies as $movie) {
 
         ;; ?>

@@ -66,7 +66,7 @@ if (!idAdmin()) {header("Location: 403.html");}
     <?php if ($success) { ?>
         <p class="success">Tu as bien rajouté un film !</p>
     <?php } else { ?>
-        <form method="post" action="">
+        <form method="post" class="adminform" action="">
             <fieldset>
                 <div>
                     <label for="title">Titre :</label>
