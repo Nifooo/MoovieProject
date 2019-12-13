@@ -82,7 +82,7 @@ include ('inc/header.php');
 <?php
 
     echo $paginator;
-    echo '<li><a href="index.php">Accueil</a></li>';
+    echo '<li><a href="pendu.php">Accueil</a></li>';
 
 
 

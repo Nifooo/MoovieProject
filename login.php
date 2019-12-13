@@ -29,7 +29,7 @@ if (!empty($_POST['submitted'])) {
                     'ip' => $_SERVER['REMOTE_ADDR']
                 );
                 //debug($_SESSION);
-                header('Location: index.php');
+                header('Location: pendu.php');
             } else {
                 $errors['login'] = 'Pseudo or Email inconnu / Mot de passe oublié';
             }
